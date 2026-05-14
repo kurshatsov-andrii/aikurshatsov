@@ -61,7 +61,7 @@ function AdminLayout() {
               {items.map((it) => (
                 <Link
                   key={it.to}
-                  to={it.to}
+                  to={it.to as string}
                   className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-colors whitespace-nowrap"
                   activeProps={{ className: "flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-foreground bg-secondary/80" }}
                   activeOptions={{ exact: it.exact ?? false }}

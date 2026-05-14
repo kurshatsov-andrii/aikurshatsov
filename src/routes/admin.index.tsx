@@ -7,14 +7,14 @@ export const Route = createFileRoute("/admin/")({
   component: AdminDashboard,
 });
 
-const tables = [
+const tables: { table: string; label: string; to: string; icon: typeof Music }[] = [
   { table: "songs", label: "Пісні", to: "/admin/songs", icon: Music },
   { table: "videos", label: "Відеореклама", to: "/admin/videos", icon: Film },
   { table: "vibe_projects", label: "Vibe-проєкти", to: "/admin/projects", icon: Code2 },
   { table: "courses", label: "Курси", to: "/admin/courses", icon: GraduationCap },
   { table: "certificates", label: "Сертифікати", to: "/admin/certificates", icon: Award },
   { table: "testimonials", label: "Відгуки", to: "/admin/testimonials", icon: MessageSquare },
-] as const;
+];
 
 function AdminDashboard() {
   const { data } = useQuery({
@@ -23,7 +23,7 @@ function AdminDashboard() {
       const counts: Record<string, number> = {};
       await Promise.all(
         tables.map(async (t) => {
-          const { count } = await supabase.from(t.table).select("*", { count: "exact", head: true });
+          const { count } = await (supabase as any).from(t.table).select("*", { count: "exact", head: true });
           counts[t.table] = count ?? 0;
         })
       );
@@ -40,7 +40,7 @@ function AdminDashboard() {
         {tables.map((t) => (
           <Link
             key={t.table}
-            to={t.to}
+            to={t.to as string}
             className="glass rounded-2xl p-5 hover:shadow-elegant transition-all hover:-translate-y-0.5 group"
           >
             <div className="flex items-center justify-between">
