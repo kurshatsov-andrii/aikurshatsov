@@ -18,6 +18,7 @@ import { Route as CertificatesRouteImport } from './routes/certificates'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AiVideoAdsRouteImport } from './routes/ai-video-ads'
 import { Route as AiSongsRouteImport } from './routes/ai-songs'
+import { Route as AiClipsRouteImport } from './routes/ai-clips'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
@@ -28,6 +29,7 @@ import { Route as AdminSocialsRouteImport } from './routes/admin.socials'
 import { Route as AdminSeoRouteImport } from './routes/admin.seo'
 import { Route as AdminProjectsRouteImport } from './routes/admin.projects'
 import { Route as AdminCoursesRouteImport } from './routes/admin.courses'
+import { Route as AdminClipsRouteImport } from './routes/admin.clips'
 import { Route as AdminCertificatesRouteImport } from './routes/admin.certificates'
 import { Route as AdminAboutRouteImport } from './routes/admin.about'
 
@@ -74,6 +76,11 @@ const AiVideoAdsRoute = AiVideoAdsRouteImport.update({
 const AiSongsRoute = AiSongsRouteImport.update({
   id: '/ai-songs',
   path: '/ai-songs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiClipsRoute = AiClipsRouteImport.update({
+  id: '/ai-clips',
+  path: '/ai-clips',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -126,6 +133,11 @@ const AdminCoursesRoute = AdminCoursesRouteImport.update({
   path: '/courses',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminClipsRoute = AdminClipsRouteImport.update({
+  id: '/clips',
+  path: '/clips',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminCertificatesRoute = AdminCertificatesRouteImport.update({
   id: '/certificates',
   path: '/certificates',
@@ -140,6 +152,7 @@ const AdminAboutRoute = AdminAboutRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/ai-clips': typeof AiClipsRoute
   '/ai-songs': typeof AiSongsRoute
   '/ai-video-ads': typeof AiVideoAdsRoute
   '/auth': typeof AuthRoute
@@ -151,6 +164,7 @@ export interface FileRoutesByFullPath {
   '/vibe-coding': typeof VibeCodingRoute
   '/admin/about': typeof AdminAboutRoute
   '/admin/certificates': typeof AdminCertificatesRoute
+  '/admin/clips': typeof AdminClipsRoute
   '/admin/courses': typeof AdminCoursesRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/seo': typeof AdminSeoRoute
@@ -162,6 +176,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-clips': typeof AiClipsRoute
   '/ai-songs': typeof AiSongsRoute
   '/ai-video-ads': typeof AiVideoAdsRoute
   '/auth': typeof AuthRoute
@@ -173,6 +188,7 @@ export interface FileRoutesByTo {
   '/vibe-coding': typeof VibeCodingRoute
   '/admin/about': typeof AdminAboutRoute
   '/admin/certificates': typeof AdminCertificatesRoute
+  '/admin/clips': typeof AdminClipsRoute
   '/admin/courses': typeof AdminCoursesRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/seo': typeof AdminSeoRoute
@@ -186,6 +202,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/ai-clips': typeof AiClipsRoute
   '/ai-songs': typeof AiSongsRoute
   '/ai-video-ads': typeof AiVideoAdsRoute
   '/auth': typeof AuthRoute
@@ -197,6 +214,7 @@ export interface FileRoutesById {
   '/vibe-coding': typeof VibeCodingRoute
   '/admin/about': typeof AdminAboutRoute
   '/admin/certificates': typeof AdminCertificatesRoute
+  '/admin/clips': typeof AdminClipsRoute
   '/admin/courses': typeof AdminCoursesRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/seo': typeof AdminSeoRoute
@@ -211,6 +229,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/ai-clips'
     | '/ai-songs'
     | '/ai-video-ads'
     | '/auth'
@@ -222,6 +241,7 @@ export interface FileRouteTypes {
     | '/vibe-coding'
     | '/admin/about'
     | '/admin/certificates'
+    | '/admin/clips'
     | '/admin/courses'
     | '/admin/projects'
     | '/admin/seo'
@@ -233,6 +253,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ai-clips'
     | '/ai-songs'
     | '/ai-video-ads'
     | '/auth'
@@ -244,6 +265,7 @@ export interface FileRouteTypes {
     | '/vibe-coding'
     | '/admin/about'
     | '/admin/certificates'
+    | '/admin/clips'
     | '/admin/courses'
     | '/admin/projects'
     | '/admin/seo'
@@ -256,6 +278,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin'
+    | '/ai-clips'
     | '/ai-songs'
     | '/ai-video-ads'
     | '/auth'
@@ -267,6 +290,7 @@ export interface FileRouteTypes {
     | '/vibe-coding'
     | '/admin/about'
     | '/admin/certificates'
+    | '/admin/clips'
     | '/admin/courses'
     | '/admin/projects'
     | '/admin/seo'
@@ -280,6 +304,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
+  AiClipsRoute: typeof AiClipsRoute
   AiSongsRoute: typeof AiSongsRoute
   AiVideoAdsRoute: typeof AiVideoAdsRoute
   AuthRoute: typeof AuthRoute
@@ -356,6 +381,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiSongsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-clips': {
+      id: '/ai-clips'
+      path: '/ai-clips'
+      fullPath: '/ai-clips'
+      preLoaderRoute: typeof AiClipsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin': {
       id: '/admin'
       path: '/admin'
@@ -426,6 +458,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminCoursesRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/clips': {
+      id: '/admin/clips'
+      path: '/clips'
+      fullPath: '/admin/clips'
+      preLoaderRoute: typeof AdminClipsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/certificates': {
       id: '/admin/certificates'
       path: '/certificates'
@@ -446,6 +485,7 @@ declare module '@tanstack/react-router' {
 interface AdminRouteChildren {
   AdminAboutRoute: typeof AdminAboutRoute
   AdminCertificatesRoute: typeof AdminCertificatesRoute
+  AdminClipsRoute: typeof AdminClipsRoute
   AdminCoursesRoute: typeof AdminCoursesRoute
   AdminProjectsRoute: typeof AdminProjectsRoute
   AdminSeoRoute: typeof AdminSeoRoute
@@ -459,6 +499,7 @@ interface AdminRouteChildren {
 const AdminRouteChildren: AdminRouteChildren = {
   AdminAboutRoute: AdminAboutRoute,
   AdminCertificatesRoute: AdminCertificatesRoute,
+  AdminClipsRoute: AdminClipsRoute,
   AdminCoursesRoute: AdminCoursesRoute,
   AdminProjectsRoute: AdminProjectsRoute,
   AdminSeoRoute: AdminSeoRoute,
@@ -474,6 +515,7 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
+  AiClipsRoute: AiClipsRoute,
   AiSongsRoute: AiSongsRoute,
   AiVideoAdsRoute: AiVideoAdsRoute,
   AuthRoute: AuthRoute,

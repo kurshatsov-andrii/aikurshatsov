@@ -4,9 +4,9 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useI18n } from "@/lib/i18n";
-import { fetchSongs, fetchVideos, fetchVibeProjects, pick } from "@/lib/data";
+import { fetchSongs, fetchVideos, fetchVibeProjects, fetchClips, pick } from "@/lib/data";
 
-type Tab = "songs" | "video" | "code";
+type Tab = "songs" | "video" | "clips" | "code";
 
 export function Portfolio() {
   const { t, lang } = useI18n();
@@ -15,10 +15,12 @@ export function Portfolio() {
   const { data: songs = [] } = useQuery({ queryKey: ["songs"], queryFn: fetchSongs });
   const { data: videos = [] } = useQuery({ queryKey: ["videos"], queryFn: fetchVideos });
   const { data: projects = [] } = useQuery({ queryKey: ["vibe_projects"], queryFn: fetchVibeProjects });
+  const { data: clips = [] } = useQuery({ queryKey: ["clips"], queryFn: fetchClips });
 
   const tabs: { id: Tab; label: string }[] = [
     { id: "songs", label: t("portfolio.tab.songs") },
     { id: "video", label: t("portfolio.tab.video") },
+    { id: "clips", label: t("portfolio.tab.clips") },
     { id: "code", label: t("portfolio.tab.code") },
   ];
 
@@ -111,6 +113,26 @@ export function Portfolio() {
             </article>
           ))}
 
+          {tab === "clips" && clips.map((c) => (
+            <article key={c.id} className="group glass rounded-2xl overflow-hidden hover:shadow-elegant transition-all hover:-translate-y-1">
+              <a href={c.video_url || "#"} target="_blank" rel="noreferrer noopener">
+                <div className="relative aspect-video overflow-hidden">
+                  <img src={c.thumbnail_url} alt={pick(lang, c.title_uk, c.title_en)} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                  <span className="absolute top-3 left-3 glass rounded-full px-2.5 py-1 text-[11px]">{c.platform}</span>
+                  <button aria-label="Play" className="absolute inset-0 m-auto size-14 rounded-full bg-foreground/90 text-background grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Play className="size-6 ml-0.5" />
+                  </button>
+                </div>
+                <div className="p-5">
+                  {c.artist && <div className="text-xs text-muted-foreground">{c.artist}</div>}
+                  <h3 className="font-display font-semibold text-lg mt-0.5">{pick(lang, c.title_uk, c.title_en)}</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground">{pick(lang, c.description_uk, c.description_en)}</p>
+                </div>
+              </a>
+            </article>
+          ))}
+
           {tab === "code" && projects.map((p) => (
             <article key={p.id} className="group glass rounded-2xl overflow-hidden hover:shadow-elegant transition-all hover:-translate-y-1">
               <div className="relative aspect-video overflow-hidden">
@@ -136,7 +158,7 @@ export function Portfolio() {
         </motion.div>
 
         <div className="mt-10 text-center">
-          <Link to={tab === "songs" ? "/ai-songs" : tab === "video" ? "/ai-video-ads" : "/vibe-coding"} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link to={tab === "songs" ? "/ai-songs" : tab === "video" ? "/ai-video-ads" : tab === "clips" ? "/ai-clips" : "/vibe-coding"} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
             {t("portfolio.viewAll")} →
           </Link>
         </div>

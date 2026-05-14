@@ -28,6 +28,19 @@ export type DBVideo = {
   sort_order: number;
 };
 
+export type DBClip = {
+  id: string;
+  title_uk: string;
+  title_en: string;
+  artist: string;
+  description_uk: string;
+  description_en: string;
+  video_url: string;
+  thumbnail_url: string;
+  platform: string;
+  sort_order: number;
+};
+
 export type DBVibeProject = {
   id: string;
   title_uk: string;
@@ -90,6 +103,11 @@ export const fetchVibeProjects = async () => {
   const { data, error } = await order("vibe_projects");
   if (error) throw error;
   return (data ?? []) as DBVibeProject[];
+};
+export const fetchClips = async () => {
+  const { data, error } = await order("clips");
+  if (error) throw error;
+  return (data ?? []) as DBClip[];
 };
 export const fetchCourses = async () => {
   const { data, error } = await order("courses");
