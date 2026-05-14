@@ -16,9 +16,9 @@ export function Hero() {
           width={1920}
           height={1080}
           fetchPriority="high"
-          className="w-full h-full object-cover opacity-70 dark:opacity-90"
+          className="w-full h-full object-cover opacity-25 dark:opacity-90"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/70 to-background dark:from-background/40 dark:via-background/20 dark:to-background" />
         <div className="absolute inset-0 grid-pattern opacity-[0.05] dark:opacity-[0.08]" />
       </div>
 
