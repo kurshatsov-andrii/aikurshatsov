@@ -129,6 +129,7 @@ export type Database = {
           description_uk: string
           icon: string
           id: string
+          image_url: string
           link_url: string | null
           price: string | null
           sort_order: number
@@ -142,6 +143,7 @@ export type Database = {
           description_uk?: string
           icon?: string
           id?: string
+          image_url?: string
           link_url?: string | null
           price?: string | null
           sort_order?: number
@@ -155,6 +157,7 @@ export type Database = {
           description_uk?: string
           icon?: string
           id?: string
+          image_url?: string
           link_url?: string | null
           price?: string | null
           sort_order?: number

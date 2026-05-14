@@ -34,6 +34,16 @@ export function Courses() {
             >
               <div className={`absolute -top-24 -right-24 w-72 h-72 rounded-full bg-gradient-to-br ${gradients[i % gradients.length]} opacity-30 blur-3xl group-hover:opacity-50 transition-opacity`} />
               <div className="relative">
+                {c.image_url && (
+                  <div className="mb-6 -mx-2 -mt-2 overflow-hidden rounded-2xl aspect-[16/9] bg-secondary">
+                    <img
+                      src={c.image_url}
+                      alt={pick(lang, c.title_uk, c.title_en)}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                )}
                 <div className="flex items-center gap-2 text-xs">
                   <span className="glass rounded-full px-2.5 py-1 inline-flex items-center gap-1.5">
                     <Sparkles className="size-3" /> AI

@@ -6,6 +6,7 @@ const fields: Field[] = [
   { name: "title_en", label: "Назва (EN)", type: "text", required: true },
   { name: "description_uk", label: "Опис (UA)", type: "textarea" },
   { name: "description_en", label: "Опис (EN)", type: "textarea" },
+  { name: "image_url", label: "Зображення превʼю", type: "image" },
   { name: "icon", label: "Іконка", type: "select", options: ["music", "film", "sparkles", "code", "graduation"] },
   { name: "price", label: "Ціна", type: "text", placeholder: "$199" },
   { name: "link_url", label: "Посилання на курс", type: "url" },
