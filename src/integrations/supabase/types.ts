@@ -77,6 +77,51 @@ export type Database = {
         }
         Relationships: []
       }
+      clips: {
+        Row: {
+          artist: string
+          created_at: string
+          description_en: string
+          description_uk: string
+          id: string
+          platform: string
+          sort_order: number
+          thumbnail_url: string
+          title_en: string
+          title_uk: string
+          updated_at: string
+          video_url: string
+        }
+        Insert: {
+          artist?: string
+          created_at?: string
+          description_en?: string
+          description_uk?: string
+          id?: string
+          platform?: string
+          sort_order?: number
+          thumbnail_url?: string
+          title_en: string
+          title_uk: string
+          updated_at?: string
+          video_url?: string
+        }
+        Update: {
+          artist?: string
+          created_at?: string
+          description_en?: string
+          description_uk?: string
+          id?: string
+          platform?: string
+          sort_order?: number
+          thumbnail_url?: string
+          title_en?: string
+          title_uk?: string
+          updated_at?: string
+          video_url?: string
+        }
+        Relationships: []
+      }
       courses: {
         Row: {
           created_at: string
