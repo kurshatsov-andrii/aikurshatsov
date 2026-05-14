@@ -1,10 +1,10 @@
-import { Send, MessageCircle, Instagram, Linkedin, Github, Globe, Sparkles, Phone } from "lucide-react";
+import { Send, MessageCircle, Instagram, Linkedin, Github, Music2, Sparkles, Phone } from "lucide-react";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useI18n } from "@/lib/i18n";
 import { fetchSiteContent } from "@/lib/site-content";
 
-type SocialsValue = Partial<Record<"telegram" | "viber" | "instagram" | "linkedin" | "github" | "website", string>>;
+type SocialsValue = Partial<Record<"telegram" | "viber" | "instagram" | "linkedin" | "github" | "tiktok", string>>;
 
 const defaultSocials: SocialsValue = {
   telegram: "https://t.me/",
@@ -12,7 +12,7 @@ const defaultSocials: SocialsValue = {
   instagram: "https://instagram.com/",
   linkedin: "https://linkedin.com/",
   github: "https://github.com/",
-  website: "#",
+  tiktok: "https://tiktok.com/@",
 };
 
 const socialMeta: { key: keyof SocialsValue; name: string; Icon: typeof Send; color: string }[] = [
@@ -21,7 +21,7 @@ const socialMeta: { key: keyof SocialsValue; name: string; Icon: typeof Send; co
   { key: "instagram", name: "Instagram", Icon: Instagram, color: "text-violet" },
   { key: "linkedin", name: "LinkedIn", Icon: Linkedin, color: "text-cyan" },
   { key: "github", name: "GitHub", Icon: Github, color: "text-foreground" },
-  { key: "website", name: "Website", Icon: Globe, color: "text-violet" },
+  { key: "tiktok", name: "TikTok", Icon: Music2, color: "text-violet" },
 ];
 
 export function Contact() {

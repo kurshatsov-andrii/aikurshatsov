@@ -7,7 +7,7 @@ const fields: KVField[] = [
   { name: "instagram", label: "Instagram URL", type: "text" },
   { name: "linkedin", label: "LinkedIn URL", type: "text" },
   { name: "github", label: "GitHub URL", type: "text" },
-  { name: "website", label: "Website URL", type: "text" },
+  { name: "tiktok", label: "TikTok URL", type: "text" },
 ];
 
 export const Route = createFileRoute("/admin/socials")({
