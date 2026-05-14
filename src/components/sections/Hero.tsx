@@ -55,7 +55,7 @@ export function Hero() {
           className="font-display font-semibold tracking-tight text-5xl sm:text-7xl lg:text-8xl leading-[0.95] hero-text-shadow"
         >
           Куршацов <br className="sm:hidden" />
-          <span className="text-gradient">Андрій</span>
+          <span className="hero-name-accent">Андрій</span>
         </motion.h1>
 
         <motion.p
