@@ -11,6 +11,8 @@ const dict = {
     "nav.certificates": "Сертифікати",
     "nav.contact": "Контакти",
 
+    "hero.lastName": "Куршацов",
+    "hero.firstName": "Андрій",
     "hero.role": "AI Creator • Vibe Coding Developer • Digital Producer",
     "hero.tagline": "Перетворюю ідеї на ШІ-музику, кінорекламу та продукти, що оживають у браузері.",
     "hero.cta.portfolio": "Переглянути портфоліо",
@@ -72,6 +74,8 @@ const dict = {
     "nav.certificates": "Certificates",
     "nav.contact": "Contact",
 
+    "hero.lastName": "Kurshatsov",
+    "hero.firstName": "Andrii",
     "hero.role": "AI Creator • Vibe Coding Developer • Digital Producer",
     "hero.tagline": "I turn ideas into AI music, cinematic ads, and products that come alive in the browser.",
     "hero.cta.portfolio": "View portfolio",
