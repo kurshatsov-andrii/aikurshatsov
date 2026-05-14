@@ -17,12 +17,12 @@ const dict = {
     "hero.cta.courses": "Мої курси",
     "hero.cta.contact": "Зв’язатися",
 
-    "stats.ai": "років у ШІ",
-    "stats.ads": "років у рекламі",
-    "stats.web": "років у веб-розробці",
-    "stats.vibe": "року у Vibe Coding",
-    "stats.seo": "років у SEO",
-    "stats.teach": "роки навчаю ШІ",
+    "stats.ai": "у ШІ",
+    "stats.ads": "у рекламі",
+    "stats.web": "у веб-розробці",
+    "stats.vibe": "у Vibe Coding",
+    "stats.seo": "у SEO",
+    "stats.teach": "навчаю ШІ",
 
     "about.title": "Про мене",
     "about.body":
@@ -78,12 +78,12 @@ const dict = {
     "hero.cta.courses": "My courses",
     "hero.cta.contact": "Get in touch",
 
-    "stats.ai": "years in AI",
-    "stats.ads": "years in advertising",
-    "stats.web": "years in web development",
-    "stats.vibe": "year in Vibe Coding",
-    "stats.seo": "years in SEO",
-    "stats.teach": "years teaching AI",
+    "stats.ai": "in AI",
+    "stats.ads": "in advertising",
+    "stats.web": "in web development",
+    "stats.vibe": "in Vibe Coding",
+    "stats.seo": "in SEO",
+    "stats.teach": "teaching AI",
 
     "about.title": "About me",
     "about.body":
