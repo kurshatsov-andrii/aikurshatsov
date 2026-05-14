@@ -22,9 +22,11 @@ import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminVideosRouteImport } from './routes/admin.videos'
 import { Route as AdminTestimonialsRouteImport } from './routes/admin.testimonials'
 import { Route as AdminSongsRouteImport } from './routes/admin.songs'
+import { Route as AdminSeoRouteImport } from './routes/admin.seo'
 import { Route as AdminProjectsRouteImport } from './routes/admin.projects'
 import { Route as AdminCoursesRouteImport } from './routes/admin.courses'
 import { Route as AdminCertificatesRouteImport } from './routes/admin.certificates'
+import { Route as AdminAboutRouteImport } from './routes/admin.about'
 
 const VibeCodingRoute = VibeCodingRouteImport.update({
   id: '/vibe-coding',
@@ -91,6 +93,11 @@ const AdminSongsRoute = AdminSongsRouteImport.update({
   path: '/songs',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminSeoRoute = AdminSeoRouteImport.update({
+  id: '/seo',
+  path: '/seo',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminProjectsRoute = AdminProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
@@ -106,6 +113,11 @@ const AdminCertificatesRoute = AdminCertificatesRouteImport.update({
   path: '/certificates',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminAboutRoute = AdminAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -117,9 +129,11 @@ export interface FileRoutesByFullPath {
   '/courses': typeof CoursesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vibe-coding': typeof VibeCodingRoute
+  '/admin/about': typeof AdminAboutRoute
   '/admin/certificates': typeof AdminCertificatesRoute
   '/admin/courses': typeof AdminCoursesRoute
   '/admin/projects': typeof AdminProjectsRoute
+  '/admin/seo': typeof AdminSeoRoute
   '/admin/songs': typeof AdminSongsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/videos': typeof AdminVideosRoute
@@ -134,9 +148,11 @@ export interface FileRoutesByTo {
   '/courses': typeof CoursesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vibe-coding': typeof VibeCodingRoute
+  '/admin/about': typeof AdminAboutRoute
   '/admin/certificates': typeof AdminCertificatesRoute
   '/admin/courses': typeof AdminCoursesRoute
   '/admin/projects': typeof AdminProjectsRoute
+  '/admin/seo': typeof AdminSeoRoute
   '/admin/songs': typeof AdminSongsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/videos': typeof AdminVideosRoute
@@ -153,9 +169,11 @@ export interface FileRoutesById {
   '/courses': typeof CoursesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vibe-coding': typeof VibeCodingRoute
+  '/admin/about': typeof AdminAboutRoute
   '/admin/certificates': typeof AdminCertificatesRoute
   '/admin/courses': typeof AdminCoursesRoute
   '/admin/projects': typeof AdminProjectsRoute
+  '/admin/seo': typeof AdminSeoRoute
   '/admin/songs': typeof AdminSongsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/videos': typeof AdminVideosRoute
@@ -173,9 +191,11 @@ export interface FileRouteTypes {
     | '/courses'
     | '/sitemap.xml'
     | '/vibe-coding'
+    | '/admin/about'
     | '/admin/certificates'
     | '/admin/courses'
     | '/admin/projects'
+    | '/admin/seo'
     | '/admin/songs'
     | '/admin/testimonials'
     | '/admin/videos'
@@ -190,9 +210,11 @@ export interface FileRouteTypes {
     | '/courses'
     | '/sitemap.xml'
     | '/vibe-coding'
+    | '/admin/about'
     | '/admin/certificates'
     | '/admin/courses'
     | '/admin/projects'
+    | '/admin/seo'
     | '/admin/songs'
     | '/admin/testimonials'
     | '/admin/videos'
@@ -208,9 +230,11 @@ export interface FileRouteTypes {
     | '/courses'
     | '/sitemap.xml'
     | '/vibe-coding'
+    | '/admin/about'
     | '/admin/certificates'
     | '/admin/courses'
     | '/admin/projects'
+    | '/admin/seo'
     | '/admin/songs'
     | '/admin/testimonials'
     | '/admin/videos'
@@ -322,6 +346,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSongsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/seo': {
+      id: '/admin/seo'
+      path: '/seo'
+      fullPath: '/admin/seo'
+      preLoaderRoute: typeof AdminSeoRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/projects': {
       id: '/admin/projects'
       path: '/projects'
@@ -343,13 +374,22 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminCertificatesRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/about': {
+      id: '/admin/about'
+      path: '/about'
+      fullPath: '/admin/about'
+      preLoaderRoute: typeof AdminAboutRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
 interface AdminRouteChildren {
+  AdminAboutRoute: typeof AdminAboutRoute
   AdminCertificatesRoute: typeof AdminCertificatesRoute
   AdminCoursesRoute: typeof AdminCoursesRoute
   AdminProjectsRoute: typeof AdminProjectsRoute
+  AdminSeoRoute: typeof AdminSeoRoute
   AdminSongsRoute: typeof AdminSongsRoute
   AdminTestimonialsRoute: typeof AdminTestimonialsRoute
   AdminVideosRoute: typeof AdminVideosRoute
@@ -357,9 +397,11 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAboutRoute: AdminAboutRoute,
   AdminCertificatesRoute: AdminCertificatesRoute,
   AdminCoursesRoute: AdminCoursesRoute,
   AdminProjectsRoute: AdminProjectsRoute,
+  AdminSeoRoute: AdminSeoRoute,
   AdminSongsRoute: AdminSongsRoute,
   AdminTestimonialsRoute: AdminTestimonialsRoute,
   AdminVideosRoute: AdminVideosRoute,

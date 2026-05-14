@@ -2,7 +2,7 @@ import { createFileRoute, Outlet, Link, useNavigate } from "@tanstack/react-rout
 import { useEffect } from "react";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
-import { LogOut, Music, Film, Code2, GraduationCap, Award, MessageSquare, LayoutDashboard } from "lucide-react";
+import { LogOut, Music, Film, Code2, GraduationCap, Award, MessageSquare, LayoutDashboard, User, Search } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -13,6 +13,8 @@ export const Route = createFileRoute("/admin")({
 
 const items: { to: string; icon: typeof Music; label: string; exact?: boolean }[] = [
   { to: "/admin", icon: LayoutDashboard, label: "Дашборд", exact: true },
+  { to: "/admin/about", icon: User, label: "Про мене" },
+  { to: "/admin/seo", icon: Search, label: "SEO сторінок" },
   { to: "/admin/songs", icon: Music, label: "Пісні" },
   { to: "/admin/videos", icon: Film, label: "Відеореклама" },
   { to: "/admin/projects", icon: Code2, label: "Vibe-проєкти" },

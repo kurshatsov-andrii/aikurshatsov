@@ -1,15 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Courses } from "@/components/sections/Courses";
+import { fetchSeo, seoMeta } from "@/lib/site-content";
 
 export const Route = createFileRoute("/courses")({
-  head: () => ({
-    meta: [
-      { title: "Курси — Куршацов Андрій" },
-      { name: "description", content: "AI-курси: створи пісню та кліп з ШІ, створи рекламу бренду з ШІ." },
-      { property: "og:title", content: "AI Courses — Куршацов Андрій" },
-      { property: "og:url", content: "/courses" },
-    ],
-    links: [{ rel: "canonical", href: "/courses" }],
-  }),
+  loader: async () => ({ seo: await fetchSeo("/courses") }),
+  head: ({ loaderData }) =>
+    seoMeta(
+      loaderData?.seo ?? null,
+      "Курси — Куршацов Андрій",
+      "AI-курси: створи пісню та кліп з ШІ, створи рекламу бренду з ШІ.",
+      "/courses"
+    ),
   component: () => <Courses />,
 });

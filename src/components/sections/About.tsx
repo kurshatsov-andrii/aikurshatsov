@@ -1,9 +1,24 @@
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
 import portrait from "@/assets/portrait.jpg";
 import { useI18n } from "@/lib/i18n";
+import { fetchSiteContent, type AboutValue } from "@/lib/site-content";
 
 export function About() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+  const { data } = useQuery({
+    queryKey: ["site_content", "about"],
+    queryFn: () => fetchSiteContent<AboutValue>("about"),
+  });
+
+  const photo = data?.photo_url || portrait;
+  const body =
+    (lang === "uk" ? data?.description_uk : data?.description_en) || t("about.body");
+  const tags =
+    Array.isArray(data?.tags) && data!.tags.length > 0
+      ? data!.tags
+      : ["Suno", "Runway", "Kling", "Midjourney", "TanStack", "Supabase"];
+
   return (
     <section id="about" className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 grid lg:grid-cols-12 gap-10 items-center">
@@ -16,7 +31,7 @@ export function About() {
         >
           <div className="relative rounded-3xl overflow-hidden shadow-elegant">
             <img
-              src={portrait}
+              src={photo}
               alt="Куршацов Андрій"
               loading="lazy"
               width={1024}
@@ -43,11 +58,11 @@ export function About() {
             <span className="text-gradient">Без води, з результатом.</span>
           </h2>
           <p className="mt-6 text-base sm:text-lg text-muted-foreground max-w-xl">
-            {t("about.body")}
+            {body}
           </p>
 
           <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {["Suno", "Runway", "Kling", "Midjourney", "TanStack", "Supabase"].map((tool) => (
+            {tags.map((tool) => (
               <div
                 key={tool}
                 className="glass rounded-xl px-4 py-3 text-sm text-center hover:scale-105 transition-transform"

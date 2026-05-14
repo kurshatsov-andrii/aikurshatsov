@@ -3,17 +3,17 @@ import { motion } from "framer-motion";
 import { Music, Play } from "lucide-react";
 import { songs } from "@/lib/portfolio-data";
 import { useI18n } from "@/lib/i18n";
+import { fetchSeo, seoMeta } from "@/lib/site-content";
 
 export const Route = createFileRoute("/ai-songs")({
-  head: () => ({
-    meta: [
-      { title: "AI Songs — Куршацов Андрій" },
-      { name: "description", content: "AI-generated songs by Андрій Куршацов: synthwave, electronic, lo-fi pop." },
-      { property: "og:title", content: "AI Songs — Куршацов Андрій" },
-      { property: "og:url", content: "/ai-songs" },
-    ],
-    links: [{ rel: "canonical", href: "/ai-songs" }],
-  }),
+  loader: async () => ({ seo: await fetchSeo("/ai-songs") }),
+  head: ({ loaderData }) =>
+    seoMeta(
+      loaderData?.seo ?? null,
+      "AI музика — Куршацов Андрій",
+      "AI-згенеровані пісні: synthwave, electronic, lo-fi pop.",
+      "/ai-songs"
+    ),
   component: AiSongsPage,
 });
 
