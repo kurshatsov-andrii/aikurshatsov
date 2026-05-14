@@ -13,6 +13,7 @@ import { Route as VibeCodingRouteImport } from './routes/vibe-coding'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as CoursesRouteImport } from './routes/courses'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CertificatesRouteImport } from './routes/certificates'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AiVideoAdsRouteImport } from './routes/ai-video-ads'
@@ -48,6 +49,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const CoursesRoute = CoursesRouteImport.update({
   id: '/courses',
   path: '/courses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CertificatesRoute = CertificatesRouteImport.update({
@@ -138,6 +144,7 @@ export interface FileRoutesByFullPath {
   '/ai-video-ads': typeof AiVideoAdsRoute
   '/auth': typeof AuthRoute
   '/certificates': typeof CertificatesRoute
+  '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -159,6 +166,7 @@ export interface FileRoutesByTo {
   '/ai-video-ads': typeof AiVideoAdsRoute
   '/auth': typeof AuthRoute
   '/certificates': typeof CertificatesRoute
+  '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -182,6 +190,7 @@ export interface FileRoutesById {
   '/ai-video-ads': typeof AiVideoAdsRoute
   '/auth': typeof AuthRoute
   '/certificates': typeof CertificatesRoute
+  '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -206,6 +215,7 @@ export interface FileRouteTypes {
     | '/ai-video-ads'
     | '/auth'
     | '/certificates'
+    | '/contact'
     | '/courses'
     | '/services'
     | '/sitemap.xml'
@@ -227,6 +237,7 @@ export interface FileRouteTypes {
     | '/ai-video-ads'
     | '/auth'
     | '/certificates'
+    | '/contact'
     | '/courses'
     | '/services'
     | '/sitemap.xml'
@@ -249,6 +260,7 @@ export interface FileRouteTypes {
     | '/ai-video-ads'
     | '/auth'
     | '/certificates'
+    | '/contact'
     | '/courses'
     | '/services'
     | '/sitemap.xml'
@@ -272,6 +284,7 @@ export interface RootRouteChildren {
   AiVideoAdsRoute: typeof AiVideoAdsRoute
   AuthRoute: typeof AuthRoute
   CertificatesRoute: typeof CertificatesRoute
+  ContactRoute: typeof ContactRoute
   CoursesRoute: typeof CoursesRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -306,6 +319,13 @@ declare module '@tanstack/react-router' {
       path: '/courses'
       fullPath: '/courses'
       preLoaderRoute: typeof CoursesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/certificates': {
@@ -458,6 +478,7 @@ const rootRouteChildren: RootRouteChildren = {
   AiVideoAdsRoute: AiVideoAdsRoute,
   AuthRoute: AuthRoute,
   CertificatesRoute: CertificatesRoute,
+  ContactRoute: ContactRoute,
   CoursesRoute: CoursesRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
@@ -466,3 +487,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
