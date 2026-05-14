@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Moon, Sun, Languages } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "@/lib/theme";
 import { useI18n } from "@/lib/i18n";
 import { useState, useEffect } from "react";
@@ -57,10 +57,9 @@ export function Header() {
           <div className="flex items-center gap-1.5">
             <button
               onClick={() => setLang(lang === "uk" ? "en" : "uk")}
-              className="h-9 px-2.5 rounded-lg text-xs font-medium flex items-center gap-1.5 hover:bg-secondary/60 transition-colors"
+              className="h-9 px-2.5 rounded-lg text-xs font-medium flex items-center hover:bg-secondary/60 transition-colors"
               aria-label="Switch language"
             >
-              <Languages className="size-4" />
               <span className="uppercase">{lang}</span>
             </button>
             <button

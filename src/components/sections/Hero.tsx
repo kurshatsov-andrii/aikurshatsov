@@ -54,8 +54,8 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.05 }}
           className="font-display font-semibold tracking-tight text-5xl sm:text-7xl lg:text-8xl leading-[0.95] hero-text-shadow"
         >
-          Куршацов <br className="sm:hidden" />
-          <span className="hero-name-accent">Андрій</span>
+          {t("hero.lastName")} <br className="sm:hidden" />
+          <span className="hero-name-accent">{t("hero.firstName")}</span>
         </motion.h1>
 
         <motion.p
