@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VibeCodingRouteImport } from './routes/vibe-coding'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as CertificatesRouteImport } from './routes/certificates'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -36,6 +37,11 @@ const VibeCodingRoute = VibeCodingRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CoursesRoute = CoursesRouteImport.update({
@@ -127,6 +133,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/certificates': typeof CertificatesRoute
   '/courses': typeof CoursesRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vibe-coding': typeof VibeCodingRoute
   '/admin/about': typeof AdminAboutRoute
@@ -146,6 +153,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/certificates': typeof CertificatesRoute
   '/courses': typeof CoursesRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vibe-coding': typeof VibeCodingRoute
   '/admin/about': typeof AdminAboutRoute
@@ -167,6 +175,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/certificates': typeof CertificatesRoute
   '/courses': typeof CoursesRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vibe-coding': typeof VibeCodingRoute
   '/admin/about': typeof AdminAboutRoute
@@ -189,6 +198,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/certificates'
     | '/courses'
+    | '/services'
     | '/sitemap.xml'
     | '/vibe-coding'
     | '/admin/about'
@@ -208,6 +218,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/certificates'
     | '/courses'
+    | '/services'
     | '/sitemap.xml'
     | '/vibe-coding'
     | '/admin/about'
@@ -228,6 +239,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/certificates'
     | '/courses'
+    | '/services'
     | '/sitemap.xml'
     | '/vibe-coding'
     | '/admin/about'
@@ -249,6 +261,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   CertificatesRoute: typeof CertificatesRoute
   CoursesRoute: typeof CoursesRoute
+  ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VibeCodingRoute: typeof VibeCodingRoute
 }
@@ -267,6 +280,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/courses': {
@@ -418,6 +438,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   CertificatesRoute: CertificatesRoute,
   CoursesRoute: CoursesRoute,
+  ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VibeCodingRoute: VibeCodingRoute,
 }

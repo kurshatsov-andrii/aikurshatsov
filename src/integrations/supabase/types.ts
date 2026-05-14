@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      briefs: {
+        Row: {
+          contact: string
+          contact_type: string
+          created_at: string
+          description: string
+          id: string
+          name: string | null
+          service: string
+          status: string
+        }
+        Insert: {
+          contact: string
+          contact_type?: string
+          created_at?: string
+          description: string
+          id?: string
+          name?: string | null
+          service: string
+          status?: string
+        }
+        Update: {
+          contact?: string
+          contact_type?: string
+          created_at?: string
+          description?: string
+          id?: string
+          name?: string | null
+          service?: string
+          status?: string
+        }
+        Relationships: []
+      }
       certificates: {
         Row: {
           created_at: string
