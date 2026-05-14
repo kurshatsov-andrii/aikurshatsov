@@ -54,8 +54,8 @@ export function About() {
             {t("about.title")}
           </div>
           <h2 className="font-display text-4xl sm:text-5xl font-semibold leading-tight">
-            Код + креатив. <br />
-            <span className="text-gradient">Від ідеї до запуску.</span>
+            {t("about.headline1")} <br />
+            <span className="text-gradient">{t("about.headline2")}</span>
           </h2>
           <p className="mt-6 text-base sm:text-lg text-muted-foreground max-w-xl">
             {body}

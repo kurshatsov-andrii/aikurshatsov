@@ -24,7 +24,7 @@ export function Contact() {
               {t("contact.title")}
             </div>
             <h2 className="font-display text-4xl sm:text-5xl font-semibold tracking-tight">
-              Розкажи про <span className="text-gradient">проєкт</span>
+              {t("contact.headline1")} <span className="text-gradient">{t("contact.headline2")}</span>
             </h2>
             <p className="mt-3 text-muted-foreground">{t("contact.subtitle")}</p>
 
@@ -99,7 +99,7 @@ export function Contact() {
             <div className="mt-6 glass rounded-2xl p-6">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <MessageCircle className="size-4 text-cyan" />
-                Швидкий зв’язок: Telegram або Instagram
+                {t("contact.quick")}
               </div>
               <div className="mt-3 flex flex-wrap gap-2">
                 <a href="https://t.me/" className="rounded-full bg-foreground text-background px-4 h-10 inline-flex items-center text-sm hover:opacity-90 transition-opacity">
