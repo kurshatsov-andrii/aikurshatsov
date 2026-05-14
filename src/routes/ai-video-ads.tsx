@@ -3,17 +3,17 @@ import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import { videos } from "@/lib/portfolio-data";
 import { useI18n } from "@/lib/i18n";
+import { fetchSeo, seoMeta } from "@/lib/site-content";
 
 export const Route = createFileRoute("/ai-video-ads")({
-  head: () => ({
-    meta: [
-      { title: "AI Video Ads — Куршацов Андрій" },
-      { name: "description", content: "AI-generated video ads for brands by Андрій Куршацов." },
-      { property: "og:title", content: "AI Video Ads — Куршацов Андрій" },
-      { property: "og:url", content: "/ai-video-ads" },
-    ],
-    links: [{ rel: "canonical", href: "/ai-video-ads" }],
-  }),
+  loader: async () => ({ seo: await fetchSeo("/ai-video-ads") }),
+  head: ({ loaderData }) =>
+    seoMeta(
+      loaderData?.seo ?? null,
+      "AI відеореклама — Куршацов Андрій",
+      "AI-згенерована відеореклама для брендів.",
+      "/ai-video-ads"
+    ),
   component: VideoPage,
 });
 

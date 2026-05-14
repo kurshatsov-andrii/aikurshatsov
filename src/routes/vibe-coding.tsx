@@ -3,17 +3,17 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { vibeProjects } from "@/lib/portfolio-data";
 import { useI18n } from "@/lib/i18n";
+import { fetchSeo, seoMeta } from "@/lib/site-content";
 
 export const Route = createFileRoute("/vibe-coding")({
-  head: () => ({
-    meta: [
-      { title: "Vibe Coding — Куршацов Андрій" },
-      { name: "description", content: "Vibe-coded products and websites by Андрій Куршацов." },
-      { property: "og:title", content: "Vibe Coding — Куршацов Андрій" },
-      { property: "og:url", content: "/vibe-coding" },
-    ],
-    links: [{ rel: "canonical", href: "/vibe-coding" }],
-  }),
+  loader: async () => ({ seo: await fetchSeo("/vibe-coding") }),
+  head: ({ loaderData }) =>
+    seoMeta(
+      loaderData?.seo ?? null,
+      "Vibe Coding — Куршацов Андрій",
+      "Vibe-coded продукти та сайти.",
+      "/vibe-coding"
+    ),
   component: VibePage,
 });
 
