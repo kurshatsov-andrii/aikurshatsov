@@ -69,7 +69,7 @@ export function Portfolio() {
         >
           {tab === "songs" && songs.map((s) => (
             <article key={s.id} className="group glass rounded-2xl overflow-hidden hover:shadow-elegant transition-all hover:-translate-y-1">
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-square overflow-hidden">
                 <img src={s.cover_url} alt={pick(lang, s.title_uk, s.title_en)} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <button aria-label="Play" className="absolute bottom-4 left-4 size-12 rounded-full bg-foreground text-background grid place-items-center hover:scale-110 transition-transform">
@@ -97,7 +97,7 @@ export function Portfolio() {
 
           {tab === "video" && videos.map((v) => (
             <article key={v.id} className="group glass rounded-2xl overflow-hidden hover:shadow-elegant transition-all hover:-translate-y-1">
-              <div className="relative aspect-video overflow-hidden">
+              <div className="relative aspect-square overflow-hidden">
                 <img src={v.thumbnail_url} alt={pick(lang, v.title_uk, v.title_en)} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <span className="absolute top-3 left-3 glass rounded-full px-2.5 py-1 text-[11px]">{v.platform}</span>
@@ -116,7 +116,7 @@ export function Portfolio() {
           {tab === "clips" && clips.map((c) => (
             <article key={c.id} className="group glass rounded-2xl overflow-hidden hover:shadow-elegant transition-all hover:-translate-y-1">
               <a href={c.video_url || "#"} target="_blank" rel="noreferrer noopener">
-                <div className="relative aspect-video overflow-hidden">
+                <div className="relative aspect-square overflow-hidden">
                   <img src={c.thumbnail_url} alt={pick(lang, c.title_uk, c.title_en)} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                   <span className="absolute top-3 left-3 glass rounded-full px-2.5 py-1 text-[11px]">{c.platform}</span>
@@ -135,7 +135,7 @@ export function Portfolio() {
 
           {tab === "code" && projects.map((p) => (
             <article key={p.id} className="group glass rounded-2xl overflow-hidden hover:shadow-elegant transition-all hover:-translate-y-1">
-              <div className="relative aspect-video overflow-hidden">
+              <div className="relative aspect-square overflow-hidden">
                 <img src={p.screenshot_url} alt={pick(lang, p.title_uk, p.title_en)} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
               <div className="p-5">
