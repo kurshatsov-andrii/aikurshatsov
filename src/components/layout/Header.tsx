@@ -36,6 +36,7 @@ export function Header() {
           <div className="hidden md:flex items-center gap-1">
             {[
               { to: "/", k: "nav.home" as const },
+              { to: "/services", k: "nav.services" as const },
               { to: "/ai-songs", k: "portfolio.tab.songs" as const },
               { to: "/ai-video-ads", k: "portfolio.tab.video" as const },
               { to: "/vibe-coding", k: "portfolio.tab.code" as const },
