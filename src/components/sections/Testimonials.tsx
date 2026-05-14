@@ -1,17 +1,18 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
-import { testimonials } from "@/lib/portfolio-data";
+import { useQuery } from "@tanstack/react-query";
 import { useI18n } from "@/lib/i18n";
+import { fetchTestimonials, pick } from "@/lib/data";
 
 export function Testimonials() {
   const { t, lang } = useI18n();
+  const { data: testimonials = [] } = useQuery({ queryKey: ["testimonials"], queryFn: fetchTestimonials });
+
   return (
     <section className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4">
         <div className="text-center mb-14">
-          <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">
-            {t("testimonials.title")}
-          </div>
+          <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">{t("testimonials.title")}</div>
           <h2 className="font-display text-4xl sm:text-5xl font-semibold tracking-tight">
             <span className="text-gradient">Слова</span>, що мотивують
           </h2>
@@ -29,10 +30,10 @@ export function Testimonials() {
               className="glass rounded-2xl p-6 flex flex-col gap-4"
             >
               <Quote className="size-6 text-violet" />
-              <blockquote className="text-base leading-relaxed">{tt.text[lang]}</blockquote>
+              <blockquote className="text-base leading-relaxed">{pick(lang, tt.text_uk, tt.text_en)}</blockquote>
               <figcaption className="mt-auto pt-4 border-t border-border">
                 <div className="font-medium">{tt.name}</div>
-                <div className="text-xs text-muted-foreground">{tt.role[lang]}</div>
+                <div className="text-xs text-muted-foreground">{pick(lang, tt.role_uk, tt.role_en)}</div>
               </figcaption>
             </motion.figure>
           ))}
