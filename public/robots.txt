@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://kurshatsov-andrii.lovable.app/sitemap.xml

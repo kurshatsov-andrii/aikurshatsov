@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-const BASE_URL = "";
+const BASE_URL = "https://kurshatsov-andrii.lovable.app";
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const paths = ["/", "/ai-songs", "/ai-video-ads", "/vibe-coding", "/courses", "/certificates"];
+        const paths = ["/", "/services", "/ai-songs", "/ai-video-ads", "/vibe-coding", "/courses", "/certificates", "/contact"];
         const urls = paths
           .map(
             (p) =>
