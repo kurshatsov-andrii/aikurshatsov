@@ -23,6 +23,7 @@ import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminVideosRouteImport } from './routes/admin.videos'
 import { Route as AdminTestimonialsRouteImport } from './routes/admin.testimonials'
 import { Route as AdminSongsRouteImport } from './routes/admin.songs'
+import { Route as AdminSocialsRouteImport } from './routes/admin.socials'
 import { Route as AdminSeoRouteImport } from './routes/admin.seo'
 import { Route as AdminProjectsRouteImport } from './routes/admin.projects'
 import { Route as AdminCoursesRouteImport } from './routes/admin.courses'
@@ -99,6 +100,11 @@ const AdminSongsRoute = AdminSongsRouteImport.update({
   path: '/songs',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminSocialsRoute = AdminSocialsRouteImport.update({
+  id: '/socials',
+  path: '/socials',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminSeoRoute = AdminSeoRouteImport.update({
   id: '/seo',
   path: '/seo',
@@ -141,6 +147,7 @@ export interface FileRoutesByFullPath {
   '/admin/courses': typeof AdminCoursesRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/seo': typeof AdminSeoRoute
+  '/admin/socials': typeof AdminSocialsRoute
   '/admin/songs': typeof AdminSongsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/videos': typeof AdminVideosRoute
@@ -161,6 +168,7 @@ export interface FileRoutesByTo {
   '/admin/courses': typeof AdminCoursesRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/seo': typeof AdminSeoRoute
+  '/admin/socials': typeof AdminSocialsRoute
   '/admin/songs': typeof AdminSongsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/videos': typeof AdminVideosRoute
@@ -183,6 +191,7 @@ export interface FileRoutesById {
   '/admin/courses': typeof AdminCoursesRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/seo': typeof AdminSeoRoute
+  '/admin/socials': typeof AdminSocialsRoute
   '/admin/songs': typeof AdminSongsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/videos': typeof AdminVideosRoute
@@ -206,6 +215,7 @@ export interface FileRouteTypes {
     | '/admin/courses'
     | '/admin/projects'
     | '/admin/seo'
+    | '/admin/socials'
     | '/admin/songs'
     | '/admin/testimonials'
     | '/admin/videos'
@@ -226,6 +236,7 @@ export interface FileRouteTypes {
     | '/admin/courses'
     | '/admin/projects'
     | '/admin/seo'
+    | '/admin/socials'
     | '/admin/songs'
     | '/admin/testimonials'
     | '/admin/videos'
@@ -247,6 +258,7 @@ export interface FileRouteTypes {
     | '/admin/courses'
     | '/admin/projects'
     | '/admin/seo'
+    | '/admin/socials'
     | '/admin/songs'
     | '/admin/testimonials'
     | '/admin/videos'
@@ -366,6 +378,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSongsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/socials': {
+      id: '/admin/socials'
+      path: '/socials'
+      fullPath: '/admin/socials'
+      preLoaderRoute: typeof AdminSocialsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/seo': {
       id: '/admin/seo'
       path: '/seo'
@@ -410,6 +429,7 @@ interface AdminRouteChildren {
   AdminCoursesRoute: typeof AdminCoursesRoute
   AdminProjectsRoute: typeof AdminProjectsRoute
   AdminSeoRoute: typeof AdminSeoRoute
+  AdminSocialsRoute: typeof AdminSocialsRoute
   AdminSongsRoute: typeof AdminSongsRoute
   AdminTestimonialsRoute: typeof AdminTestimonialsRoute
   AdminVideosRoute: typeof AdminVideosRoute
@@ -422,6 +442,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminCoursesRoute: AdminCoursesRoute,
   AdminProjectsRoute: AdminProjectsRoute,
   AdminSeoRoute: AdminSeoRoute,
+  AdminSocialsRoute: AdminSocialsRoute,
   AdminSongsRoute: AdminSongsRoute,
   AdminTestimonialsRoute: AdminTestimonialsRoute,
   AdminVideosRoute: AdminVideosRoute,
@@ -445,3 +466,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
