@@ -1,18 +1,42 @@
-import { Send, MessageCircle, Instagram, Linkedin, Github, Globe, Sparkles } from "lucide-react";
+import { Send, MessageCircle, Instagram, Linkedin, Github, Globe, Sparkles, Phone } from "lucide-react";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useI18n } from "@/lib/i18n";
+import { fetchSiteContent } from "@/lib/site-content";
 
-const socials = [
-  { name: "Telegram", Icon: Send, href: "https://t.me/", color: "text-cyan" },
-  { name: "Instagram", Icon: Instagram, href: "https://instagram.com/", color: "text-violet" },
-  { name: "LinkedIn", Icon: Linkedin, href: "https://linkedin.com/", color: "text-cyan" },
-  { name: "GitHub", Icon: Github, href: "https://github.com/", color: "text-foreground" },
-  { name: "Website", Icon: Globe, href: "#", color: "text-violet" },
+type SocialsValue = Partial<Record<"telegram" | "viber" | "instagram" | "linkedin" | "github" | "website", string>>;
+
+const defaultSocials: SocialsValue = {
+  telegram: "https://t.me/",
+  viber: "viber://chat?number=",
+  instagram: "https://instagram.com/",
+  linkedin: "https://linkedin.com/",
+  github: "https://github.com/",
+  website: "#",
+};
+
+const socialMeta: { key: keyof SocialsValue; name: string; Icon: typeof Send; color: string }[] = [
+  { key: "telegram", name: "Telegram", Icon: Send, color: "text-cyan" },
+  { key: "viber", name: "Viber", Icon: Phone, color: "text-violet" },
+  { key: "instagram", name: "Instagram", Icon: Instagram, color: "text-violet" },
+  { key: "linkedin", name: "LinkedIn", Icon: Linkedin, color: "text-cyan" },
+  { key: "github", name: "GitHub", Icon: Github, color: "text-foreground" },
+  { key: "website", name: "Website", Icon: Globe, color: "text-violet" },
 ];
 
 export function Contact() {
   const { t } = useI18n();
   const [sent, setSent] = useState(false);
+  const { data: socialsData } = useQuery({
+    queryKey: ["site_content", "socials"],
+    queryFn: () => fetchSiteContent<SocialsValue>("socials"),
+  });
+  const socialsMap = { ...defaultSocials, ...(socialsData ?? {}) };
+  const socials = socialMeta
+    .map((m) => ({ ...m, href: (socialsMap[m.key] || "").trim() }))
+    .filter((s) => s.href.length > 0);
+  const tgHref = socialsMap.telegram || "https://t.me/";
+  const igHref = socialsMap.instagram || "https://instagram.com/";
 
   return (
     <section id="contact" className="relative py-24 sm:py-32">
@@ -102,10 +126,10 @@ export function Contact() {
                 {t("contact.quick")}
               </div>
               <div className="mt-3 flex flex-wrap gap-2">
-                <a href="https://t.me/" className="rounded-full bg-foreground text-background px-4 h-10 inline-flex items-center text-sm hover:opacity-90 transition-opacity">
+                <a href={tgHref} target="_blank" rel="noreferrer noopener" className="rounded-full bg-foreground text-background px-4 h-10 inline-flex items-center text-sm hover:opacity-90 transition-opacity">
                   Telegram
                 </a>
-                <a href="https://instagram.com/" className="rounded-full glass px-4 h-10 inline-flex items-center text-sm hover:bg-secondary/60 transition-colors">
+                <a href={igHref} target="_blank" rel="noreferrer noopener" className="rounded-full glass px-4 h-10 inline-flex items-center text-sm hover:bg-secondary/60 transition-colors">
                   Instagram
                 </a>
               </div>

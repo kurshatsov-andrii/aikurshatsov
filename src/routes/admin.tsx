@@ -2,7 +2,7 @@ import { createFileRoute, Outlet, Link, useNavigate } from "@tanstack/react-rout
 import { useEffect } from "react";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
-import { LogOut, Music, Film, Code2, GraduationCap, Award, MessageSquare, LayoutDashboard, User, Search } from "lucide-react";
+import { LogOut, Music, Film, Code2, GraduationCap, Award, MessageSquare, LayoutDashboard, User, Search, Share2 } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -21,6 +21,7 @@ const items: { to: string; icon: typeof Music; label: string; exact?: boolean }[
   { to: "/admin/courses", icon: GraduationCap, label: "Курси" },
   { to: "/admin/certificates", icon: Award, label: "Сертифікати" },
   { to: "/admin/testimonials", icon: MessageSquare, label: "Відгуки" },
+  { to: "/admin/socials", icon: Share2, label: "Соцмережі" },
 ];
 
 function AdminLayout() {
