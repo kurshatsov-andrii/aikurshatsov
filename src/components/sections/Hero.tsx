@@ -16,9 +16,10 @@ export function Hero() {
           width={1920}
           height={1080}
           fetchPriority="high"
-          className="w-full h-full object-cover opacity-25 dark:opacity-90"
+          className="w-full h-full object-cover opacity-20 dark:opacity-70"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/70 to-background dark:from-background/40 dark:via-background/20 dark:to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/92 via-background/80 to-background dark:from-background/82 dark:via-background/64 dark:to-background" />
+        <div className="absolute inset-x-0 top-0 h-[72%] bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--background)_88%,transparent)_0%,color-mix(in_oklab,var(--background)_66%,transparent)_42%,transparent_72%)]" />
         <div className="absolute inset-0 grid-pattern opacity-[0.05] dark:opacity-[0.08]" />
       </div>
 
@@ -41,7 +42,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-xs sm:text-sm text-muted-foreground mb-8"
+          className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-xs sm:text-sm hero-muted mb-8"
         >
           <span className="size-1.5 rounded-full bg-cyan animate-pulse" />
           {t("hero.role")}
@@ -51,7 +52,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.05 }}
-          className="font-display font-semibold tracking-tight text-5xl sm:text-7xl lg:text-8xl leading-[0.95]"
+          className="font-display font-semibold tracking-tight text-5xl sm:text-7xl lg:text-8xl leading-[0.95] hero-text-shadow"
         >
           Куршацов <br className="sm:hidden" />
           <span className="text-gradient">Андрій</span>
@@ -61,7 +62,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="mt-6 max-w-2xl mx-auto text-base sm:text-lg text-muted-foreground"
+          className="mt-6 max-w-2xl mx-auto text-base sm:text-lg hero-muted font-medium"
         >
           {t("hero.tagline")}
         </motion.p>
