@@ -27,7 +27,7 @@ function VideoPage() {
             {t("portfolio.tab.video")}
           </div>
           <h1 className="font-display text-5xl sm:text-6xl font-semibold tracking-tight">
-            <span className="text-gradient">AI</span> відеореклама
+            <span className="text-gradient">{t("page.video.h1a")}</span> {t("page.video.h1b")}
           </h1>
           <p className="mt-3 text-muted-foreground max-w-xl">{t("portfolio.subtitle")}</p>
         </header>
