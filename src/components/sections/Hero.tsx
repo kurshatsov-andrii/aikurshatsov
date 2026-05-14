@@ -104,12 +104,12 @@ export function Hero() {
           className="mt-20 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px rounded-2xl glass overflow-hidden"
         >
           {[
-            { n: "3+", k: "stats.ai" as const },
-            { n: "10+", k: "stats.ads" as const },
             { n: "17+", k: "stats.web" as const },
-            { n: "1+", k: "stats.vibe" as const },
-            { n: "2+", k: "stats.teach" as const },
+            { n: "17+", k: "stats.seo" as const },
+            { n: "10+", k: "stats.ads" as const },
+            { n: "3+", k: "stats.ai" as const },
             { n: "2", k: "stats.courses" as const },
+            { n: "1+", k: "stats.vibe" as const },
           ].map((s) => (
             <div key={s.k} className="bg-background/40 px-4 py-5 text-center">
               <div className="font-display text-2xl sm:text-3xl font-semibold text-gradient">{s.n}</div>
