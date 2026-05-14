@@ -35,7 +35,7 @@ export function Courses() {
               <div className={`absolute -top-24 -right-24 w-72 h-72 rounded-full bg-gradient-to-br ${gradients[i % gradients.length]} opacity-30 blur-3xl group-hover:opacity-50 transition-opacity`} />
               <div className="relative">
                 {c.image_url && (
-                  <div className="mb-6 -mx-2 -mt-2 overflow-hidden rounded-2xl aspect-[16/9] bg-secondary">
+                  <div className="mb-6 -mx-2 -mt-2 overflow-hidden rounded-2xl aspect-square bg-secondary">
                     <img
                       src={c.image_url}
                       alt={pick(lang, c.title_uk, c.title_en)}
