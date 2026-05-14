@@ -14,6 +14,7 @@ import { ThemeProvider } from "@/lib/theme";
 import { I18nProvider } from "@/lib/i18n";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -124,6 +125,7 @@ function RootComponent() {
             <Outlet />
           </main>
           <Footer />
+          <Toaster />
         </I18nProvider>
       </ThemeProvider>
     </QueryClientProvider>

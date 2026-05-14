@@ -2,14 +2,19 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github, Music, Play } from "lucide-react";
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { songs, videos, vibeProjects } from "@/lib/portfolio-data";
+import { useQuery } from "@tanstack/react-query";
 import { useI18n } from "@/lib/i18n";
+import { fetchSongs, fetchVideos, fetchVibeProjects, pick } from "@/lib/data";
 
 type Tab = "songs" | "video" | "code";
 
 export function Portfolio() {
   const { t, lang } = useI18n();
   const [tab, setTab] = useState<Tab>("songs");
+
+  const { data: songs = [] } = useQuery({ queryKey: ["songs"], queryFn: fetchSongs });
+  const { data: videos = [] } = useQuery({ queryKey: ["videos"], queryFn: fetchVideos });
+  const { data: projects = [] } = useQuery({ queryKey: ["vibe_projects"], queryFn: fetchVibeProjects });
 
   const tabs: { id: Tab; label: string }[] = [
     { id: "songs", label: t("portfolio.tab.songs") },
@@ -60,121 +65,78 @@ export function Portfolio() {
           transition={{ duration: 0.4 }}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
         >
-          {tab === "songs" &&
-            songs.map((s) => (
-              <article
-                key={s.id}
-                className="group glass rounded-2xl overflow-hidden hover:shadow-elegant transition-all hover:-translate-y-1"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={s.cover}
-                    alt={s.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                  <button
-                    aria-label="Play"
-                    className="absolute bottom-4 left-4 size-12 rounded-full bg-foreground text-background grid place-items-center hover:scale-110 transition-transform"
-                  >
-                    <Play className="size-5 ml-0.5" />
-                  </button>
+          {tab === "songs" && songs.map((s) => (
+            <article key={s.id} className="group glass rounded-2xl overflow-hidden hover:shadow-elegant transition-all hover:-translate-y-1">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img src={s.cover_url} alt={pick(lang, s.title_uk, s.title_en)} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <button aria-label="Play" className="absolute bottom-4 left-4 size-12 rounded-full bg-foreground text-background grid place-items-center hover:scale-110 transition-transform">
+                  <Play className="size-5 ml-0.5" />
+                </button>
+                {s.genre && (
                   <span className="absolute top-3 right-3 glass rounded-full px-2.5 py-1 text-[11px] flex items-center gap-1">
-                    <Music className="size-3" />
-                    {s.genre}
+                    <Music className="size-3" />{s.genre}
                   </span>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-display font-semibold text-lg">{s.title}</h3>
-                  <p className="mt-1.5 text-sm text-muted-foreground">{s.description[lang]}</p>
+                )}
+              </div>
+              <div className="p-5">
+                <h3 className="font-display font-semibold text-lg">{pick(lang, s.title_uk, s.title_en)}</h3>
+                <p className="mt-1.5 text-sm text-muted-foreground">{pick(lang, s.description_uk, s.description_en)}</p>
+                {s.tags?.length > 0 && (
                   <div className="mt-4 flex flex-wrap gap-1.5">
                     {s.tags.map((tg) => (
-                      <span key={tg} className="text-[11px] px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground">
-                        {tg}
-                      </span>
+                      <span key={tg} className="text-[11px] px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground">{tg}</span>
                     ))}
                   </div>
-                </div>
-              </article>
-            ))}
+                )}
+              </div>
+            </article>
+          ))}
 
-          {tab === "video" &&
-            videos.map((v) => (
-              <article
-                key={v.id}
-                className="group glass rounded-2xl overflow-hidden hover:shadow-elegant transition-all hover:-translate-y-1"
-              >
-                <div className="relative aspect-video overflow-hidden">
-                  <img
-                    src={v.thumbnail}
-                    alt={v.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                  <span className="absolute top-3 left-3 glass rounded-full px-2.5 py-1 text-[11px]">{v.platform}</span>
-                  <button
-                    aria-label="Play"
-                    className="absolute inset-0 m-auto size-14 rounded-full bg-foreground/90 text-background grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
-                    <Play className="size-6 ml-0.5" />
-                  </button>
-                </div>
-                <div className="p-5">
-                  <div className="text-xs text-muted-foreground">{v.brand}</div>
-                  <h3 className="font-display font-semibold text-lg mt-0.5">{v.title}</h3>
-                  <p className="mt-1.5 text-sm text-muted-foreground">{v.description[lang]}</p>
-                </div>
-              </article>
-            ))}
+          {tab === "video" && videos.map((v) => (
+            <article key={v.id} className="group glass rounded-2xl overflow-hidden hover:shadow-elegant transition-all hover:-translate-y-1">
+              <div className="relative aspect-video overflow-hidden">
+                <img src={v.thumbnail_url} alt={pick(lang, v.title_uk, v.title_en)} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <span className="absolute top-3 left-3 glass rounded-full px-2.5 py-1 text-[11px]">{v.platform}</span>
+                <button aria-label="Play" className="absolute inset-0 m-auto size-14 rounded-full bg-foreground/90 text-background grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Play className="size-6 ml-0.5" />
+                </button>
+              </div>
+              <div className="p-5">
+                <div className="text-xs text-muted-foreground">{v.brand}</div>
+                <h3 className="font-display font-semibold text-lg mt-0.5">{pick(lang, v.title_uk, v.title_en)}</h3>
+                <p className="mt-1.5 text-sm text-muted-foreground">{pick(lang, v.description_uk, v.description_en)}</p>
+              </div>
+            </article>
+          ))}
 
-          {tab === "code" &&
-            vibeProjects.map((p) => (
-              <article
-                key={p.id}
-                className="group glass rounded-2xl overflow-hidden hover:shadow-elegant transition-all hover:-translate-y-1"
-              >
-                <div className="relative aspect-video overflow-hidden">
-                  <img
-                    src={p.screenshot}
-                    alt={p.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-                <div className="p-5">
-                  <h3 className="font-display font-semibold text-lg">{p.title}</h3>
-                  <p className="mt-1.5 text-sm text-muted-foreground">{p.description[lang]}</p>
+          {tab === "code" && projects.map((p) => (
+            <article key={p.id} className="group glass rounded-2xl overflow-hidden hover:shadow-elegant transition-all hover:-translate-y-1">
+              <div className="relative aspect-video overflow-hidden">
+                <img src={p.screenshot_url} alt={pick(lang, p.title_uk, p.title_en)} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              </div>
+              <div className="p-5">
+                <h3 className="font-display font-semibold text-lg">{pick(lang, p.title_uk, p.title_en)}</h3>
+                <p className="mt-1.5 text-sm text-muted-foreground">{pick(lang, p.description_uk, p.description_en)}</p>
+                {p.stack?.length > 0 && (
                   <div className="mt-3 flex flex-wrap gap-1.5">
                     {p.stack.map((s) => (
-                      <span key={s} className="text-[11px] px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground">
-                        {s}
-                      </span>
+                      <span key={s} className="text-[11px] px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground">{s}</span>
                     ))}
                   </div>
-                  <div className="mt-4 flex items-center gap-3 text-sm">
-                    {p.liveUrl && (
-                      <a href={p.liveUrl} className="inline-flex items-center gap-1.5 hover:text-violet transition-colors">
-                        <ExternalLink className="size-4" /> Live
-                      </a>
-                    )}
-                    {p.githubUrl && (
-                      <a href={p.githubUrl} className="inline-flex items-center gap-1.5 hover:text-violet transition-colors">
-                        <Github className="size-4" /> GitHub
-                      </a>
-                    )}
-                  </div>
+                )}
+                <div className="mt-4 flex items-center gap-3 text-sm">
+                  {p.live_url && <a href={p.live_url} className="inline-flex items-center gap-1.5 hover:text-violet transition-colors"><ExternalLink className="size-4" /> Live</a>}
+                  {p.github_url && <a href={p.github_url} className="inline-flex items-center gap-1.5 hover:text-violet transition-colors"><Github className="size-4" /> GitHub</a>}
                 </div>
-              </article>
-            ))}
+              </div>
+            </article>
+          ))}
         </motion.div>
 
         <div className="mt-10 text-center">
-          <Link
-            to={tab === "songs" ? "/ai-songs" : tab === "video" ? "/ai-video-ads" : "/vibe-coding"}
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
+          <Link to={tab === "songs" ? "/ai-songs" : tab === "video" ? "/ai-video-ads" : "/vibe-coding"} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
             {t("portfolio.viewAll")} →
           </Link>
         </div>

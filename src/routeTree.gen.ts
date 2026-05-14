@@ -13,9 +13,18 @@ import { Route as VibeCodingRouteImport } from './routes/vibe-coding'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as CertificatesRouteImport } from './routes/certificates'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AiVideoAdsRouteImport } from './routes/ai-video-ads'
 import { Route as AiSongsRouteImport } from './routes/ai-songs'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminVideosRouteImport } from './routes/admin.videos'
+import { Route as AdminTestimonialsRouteImport } from './routes/admin.testimonials'
+import { Route as AdminSongsRouteImport } from './routes/admin.songs'
+import { Route as AdminProjectsRouteImport } from './routes/admin.projects'
+import { Route as AdminCoursesRouteImport } from './routes/admin.courses'
+import { Route as AdminCertificatesRouteImport } from './routes/admin.certificates'
 
 const VibeCodingRoute = VibeCodingRouteImport.update({
   id: '/vibe-coding',
@@ -37,6 +46,11 @@ const CertificatesRoute = CertificatesRouteImport.update({
   path: '/certificates',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AiVideoAdsRoute = AiVideoAdsRouteImport.update({
   id: '/ai-video-ads',
   path: '/ai-video-ads',
@@ -47,74 +61,168 @@ const AiSongsRoute = AiSongsRouteImport.update({
   path: '/ai-songs',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminVideosRoute = AdminVideosRouteImport.update({
+  id: '/videos',
+  path: '/videos',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTestimonialsRoute = AdminTestimonialsRouteImport.update({
+  id: '/testimonials',
+  path: '/testimonials',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSongsRoute = AdminSongsRouteImport.update({
+  id: '/songs',
+  path: '/songs',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminProjectsRoute = AdminProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCoursesRoute = AdminCoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCertificatesRoute = AdminCertificatesRouteImport.update({
+  id: '/certificates',
+  path: '/certificates',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/ai-songs': typeof AiSongsRoute
   '/ai-video-ads': typeof AiVideoAdsRoute
+  '/auth': typeof AuthRoute
   '/certificates': typeof CertificatesRoute
   '/courses': typeof CoursesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vibe-coding': typeof VibeCodingRoute
+  '/admin/certificates': typeof AdminCertificatesRoute
+  '/admin/courses': typeof AdminCoursesRoute
+  '/admin/projects': typeof AdminProjectsRoute
+  '/admin/songs': typeof AdminSongsRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
+  '/admin/videos': typeof AdminVideosRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ai-songs': typeof AiSongsRoute
   '/ai-video-ads': typeof AiVideoAdsRoute
+  '/auth': typeof AuthRoute
   '/certificates': typeof CertificatesRoute
   '/courses': typeof CoursesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vibe-coding': typeof VibeCodingRoute
+  '/admin/certificates': typeof AdminCertificatesRoute
+  '/admin/courses': typeof AdminCoursesRoute
+  '/admin/projects': typeof AdminProjectsRoute
+  '/admin/songs': typeof AdminSongsRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
+  '/admin/videos': typeof AdminVideosRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/ai-songs': typeof AiSongsRoute
   '/ai-video-ads': typeof AiVideoAdsRoute
+  '/auth': typeof AuthRoute
   '/certificates': typeof CertificatesRoute
   '/courses': typeof CoursesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vibe-coding': typeof VibeCodingRoute
+  '/admin/certificates': typeof AdminCertificatesRoute
+  '/admin/courses': typeof AdminCoursesRoute
+  '/admin/projects': typeof AdminProjectsRoute
+  '/admin/songs': typeof AdminSongsRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
+  '/admin/videos': typeof AdminVideosRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/ai-songs'
     | '/ai-video-ads'
+    | '/auth'
     | '/certificates'
     | '/courses'
     | '/sitemap.xml'
     | '/vibe-coding'
+    | '/admin/certificates'
+    | '/admin/courses'
+    | '/admin/projects'
+    | '/admin/songs'
+    | '/admin/testimonials'
+    | '/admin/videos'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/ai-songs'
     | '/ai-video-ads'
+    | '/auth'
     | '/certificates'
     | '/courses'
     | '/sitemap.xml'
     | '/vibe-coding'
+    | '/admin/certificates'
+    | '/admin/courses'
+    | '/admin/projects'
+    | '/admin/songs'
+    | '/admin/testimonials'
+    | '/admin/videos'
+    | '/admin'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/ai-songs'
     | '/ai-video-ads'
+    | '/auth'
     | '/certificates'
     | '/courses'
     | '/sitemap.xml'
     | '/vibe-coding'
+    | '/admin/certificates'
+    | '/admin/courses'
+    | '/admin/projects'
+    | '/admin/songs'
+    | '/admin/testimonials'
+    | '/admin/videos'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
   AiSongsRoute: typeof AiSongsRoute
   AiVideoAdsRoute: typeof AiVideoAdsRoute
+  AuthRoute: typeof AuthRoute
   CertificatesRoute: typeof CertificatesRoute
   CoursesRoute: typeof CoursesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -151,6 +259,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CertificatesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ai-video-ads': {
       id: '/ai-video-ads'
       path: '/ai-video-ads'
@@ -165,6 +280,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiSongsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -172,13 +294,86 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/videos': {
+      id: '/admin/videos'
+      path: '/videos'
+      fullPath: '/admin/videos'
+      preLoaderRoute: typeof AdminVideosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/testimonials': {
+      id: '/admin/testimonials'
+      path: '/testimonials'
+      fullPath: '/admin/testimonials'
+      preLoaderRoute: typeof AdminTestimonialsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/songs': {
+      id: '/admin/songs'
+      path: '/songs'
+      fullPath: '/admin/songs'
+      preLoaderRoute: typeof AdminSongsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/projects': {
+      id: '/admin/projects'
+      path: '/projects'
+      fullPath: '/admin/projects'
+      preLoaderRoute: typeof AdminProjectsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/courses': {
+      id: '/admin/courses'
+      path: '/courses'
+      fullPath: '/admin/courses'
+      preLoaderRoute: typeof AdminCoursesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/certificates': {
+      id: '/admin/certificates'
+      path: '/certificates'
+      fullPath: '/admin/certificates'
+      preLoaderRoute: typeof AdminCertificatesRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminCertificatesRoute: typeof AdminCertificatesRoute
+  AdminCoursesRoute: typeof AdminCoursesRoute
+  AdminProjectsRoute: typeof AdminProjectsRoute
+  AdminSongsRoute: typeof AdminSongsRoute
+  AdminTestimonialsRoute: typeof AdminTestimonialsRoute
+  AdminVideosRoute: typeof AdminVideosRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminCertificatesRoute: AdminCertificatesRoute,
+  AdminCoursesRoute: AdminCoursesRoute,
+  AdminProjectsRoute: AdminProjectsRoute,
+  AdminSongsRoute: AdminSongsRoute,
+  AdminTestimonialsRoute: AdminTestimonialsRoute,
+  AdminVideosRoute: AdminVideosRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
   AiSongsRoute: AiSongsRoute,
   AiVideoAdsRoute: AiVideoAdsRoute,
+  AuthRoute: AuthRoute,
   CertificatesRoute: CertificatesRoute,
   CoursesRoute: CoursesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
