@@ -14,7 +14,7 @@ export function Testimonials() {
         <div className="text-center mb-14">
           <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">{t("testimonials.title")}</div>
           <h2 className="font-display text-4xl sm:text-5xl font-semibold tracking-tight">
-            <span className="text-gradient">Слова</span>, що мотивують
+            <span className="text-gradient">{t("testimonials.headline1")}</span>{t("testimonials.headline2")}
           </h2>
           <p className="mt-3 text-muted-foreground max-w-xl mx-auto">{t("testimonials.subtitle")}</p>
         </div>

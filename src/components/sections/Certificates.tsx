@@ -13,7 +13,7 @@ export function Certificates() {
         <div className="mb-12">
           <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">{t("certs.title")}</div>
           <h2 className="font-display text-4xl sm:text-5xl font-semibold tracking-tight">
-            Підтверджена <span className="text-gradient">експертиза</span>
+            {t("certs.headline1")} <span className="text-gradient">{t("certs.headline2")}</span>
           </h2>
           <p className="mt-3 text-muted-foreground max-w-xl">{t("certs.subtitle")}</p>
         </div>

@@ -31,7 +31,7 @@ export function Portfolio() {
               {t("portfolio.title")}
             </div>
             <h2 className="font-display text-4xl sm:text-5xl font-semibold tracking-tight">
-              Вибрані <span className="text-gradient">роботи</span>
+              {t("portfolio.headline1")} <span className="text-gradient">{t("portfolio.headline2")}</span>
             </h2>
             <p className="mt-3 text-muted-foreground max-w-xl">{t("portfolio.subtitle")}</p>
           </div>
