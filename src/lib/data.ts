@@ -62,6 +62,7 @@ export type DBCourse = {
   description_uk: string;
   description_en: string;
   icon: string;
+  image_url: string;
   price: string | null;
   link_url: string | null;
   sort_order: number;
