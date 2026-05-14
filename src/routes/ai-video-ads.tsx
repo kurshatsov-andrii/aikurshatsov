@@ -8,13 +8,23 @@ import { fetchSeo, seoMeta } from "@/lib/site-content";
 
 export const Route = createFileRoute("/ai-video-ads")({
   loader: async () => ({ seo: await fetchSeo("/ai-video-ads") }),
-  head: ({ loaderData }) =>
-    seoMeta(
+  head: ({ loaderData }) => ({
+    ...seoMeta(
       loaderData?.seo ?? null,
       "AI відеореклама — Куршацов Андрій",
       "AI-згенерована відеореклама для брендів.",
       "/ai-video-ads"
     ),
+    scripts: [{
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: "AI відеореклама — Куршацов Андрій",
+        url: "https://kurshatsov-andrii.lovable.app/ai-video-ads",
+      }),
+    }],
+  }),
   component: VideoPage,
 });
 

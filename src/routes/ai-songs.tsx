@@ -8,13 +8,23 @@ import { fetchSeo, seoMeta } from "@/lib/site-content";
 
 export const Route = createFileRoute("/ai-songs")({
   loader: async () => ({ seo: await fetchSeo("/ai-songs") }),
-  head: ({ loaderData }) =>
-    seoMeta(
+  head: ({ loaderData }) => ({
+    ...seoMeta(
       loaderData?.seo ?? null,
       "AI музика — Куршацов Андрій",
       "AI-згенеровані пісні: synthwave, electronic, lo-fi pop.",
       "/ai-songs"
     ),
+    scripts: [{
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: "AI музика — Куршацов Андрій",
+        url: "https://kurshatsov-andrii.lovable.app/ai-songs",
+      }),
+    }],
+  }),
   component: AiSongsPage,
 });
 

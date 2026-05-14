@@ -8,13 +8,23 @@ import { fetchSeo, seoMeta } from "@/lib/site-content";
 
 export const Route = createFileRoute("/vibe-coding")({
   loader: async () => ({ seo: await fetchSeo("/vibe-coding") }),
-  head: ({ loaderData }) =>
-    seoMeta(
+  head: ({ loaderData }) => ({
+    ...seoMeta(
       loaderData?.seo ?? null,
       "Vibe Coding — Куршацов Андрій",
       "Vibe-coded продукти та сайти.",
       "/vibe-coding"
     ),
+    scripts: [{
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: "Vibe Coding — Куршацов Андрій",
+        url: "https://kurshatsov-andrii.lovable.app/vibe-coding",
+      }),
+    }],
+  }),
   component: VibePage,
 });
 
