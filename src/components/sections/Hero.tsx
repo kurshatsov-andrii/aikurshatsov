@@ -108,7 +108,7 @@ export function Hero() {
             { n: "17+", k: "stats.seo" as const },
             { n: "10+", k: "stats.ads" as const },
             { n: "3+", k: "stats.ai" as const },
-            { n: "2", k: "stats.courses" as const },
+            { n: "2+", k: "stats.teach" as const },
             { n: "1+", k: "stats.vibe" as const },
           ].map((s) => (
             <div key={s.k} className="bg-background/40 px-4 py-5 text-center">

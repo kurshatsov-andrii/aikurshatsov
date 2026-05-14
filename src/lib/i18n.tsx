@@ -22,7 +22,7 @@ const dict = {
     "stats.web": "років у веб-розробці",
     "stats.vibe": "року у Vibe Coding",
     "stats.seo": "років у SEO",
-    "stats.courses": "AI-курсів створено",
+    "stats.teach": "роки навчаю ШІ",
 
     "about.title": "Про мене",
     "about.body":
@@ -83,7 +83,7 @@ const dict = {
     "stats.web": "years in web development",
     "stats.vibe": "year in Vibe Coding",
     "stats.seo": "years in SEO",
-    "stats.courses": "AI courses created",
+    "stats.teach": "years teaching AI",
 
     "about.title": "About me",
     "about.body":
