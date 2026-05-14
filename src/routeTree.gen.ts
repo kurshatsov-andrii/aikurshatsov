@@ -9,8 +9,44 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VibeCodingRouteImport } from './routes/vibe-coding'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as CoursesRouteImport } from './routes/courses'
+import { Route as CertificatesRouteImport } from './routes/certificates'
+import { Route as AiVideoAdsRouteImport } from './routes/ai-video-ads'
+import { Route as AiSongsRouteImport } from './routes/ai-songs'
 import { Route as IndexRouteImport } from './routes/index'
 
+const VibeCodingRoute = VibeCodingRouteImport.update({
+  id: '/vibe-coding',
+  path: '/vibe-coding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoursesRoute = CoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CertificatesRoute = CertificatesRouteImport.update({
+  id: '/certificates',
+  path: '/certificates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiVideoAdsRoute = AiVideoAdsRouteImport.update({
+  id: '/ai-video-ads',
+  path: '/ai-video-ads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiSongsRoute = AiSongsRouteImport.update({
+  id: '/ai-songs',
+  path: '/ai-songs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +55,116 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-songs': typeof AiSongsRoute
+  '/ai-video-ads': typeof AiVideoAdsRoute
+  '/certificates': typeof CertificatesRoute
+  '/courses': typeof CoursesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/vibe-coding': typeof VibeCodingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-songs': typeof AiSongsRoute
+  '/ai-video-ads': typeof AiVideoAdsRoute
+  '/certificates': typeof CertificatesRoute
+  '/courses': typeof CoursesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/vibe-coding': typeof VibeCodingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-songs': typeof AiSongsRoute
+  '/ai-video-ads': typeof AiVideoAdsRoute
+  '/certificates': typeof CertificatesRoute
+  '/courses': typeof CoursesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/vibe-coding': typeof VibeCodingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/ai-songs'
+    | '/ai-video-ads'
+    | '/certificates'
+    | '/courses'
+    | '/sitemap.xml'
+    | '/vibe-coding'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/ai-songs'
+    | '/ai-video-ads'
+    | '/certificates'
+    | '/courses'
+    | '/sitemap.xml'
+    | '/vibe-coding'
+  id:
+    | '__root__'
+    | '/'
+    | '/ai-songs'
+    | '/ai-video-ads'
+    | '/certificates'
+    | '/courses'
+    | '/sitemap.xml'
+    | '/vibe-coding'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiSongsRoute: typeof AiSongsRoute
+  AiVideoAdsRoute: typeof AiVideoAdsRoute
+  CertificatesRoute: typeof CertificatesRoute
+  CoursesRoute: typeof CoursesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  VibeCodingRoute: typeof VibeCodingRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/vibe-coding': {
+      id: '/vibe-coding'
+      path: '/vibe-coding'
+      fullPath: '/vibe-coding'
+      preLoaderRoute: typeof VibeCodingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/courses': {
+      id: '/courses'
+      path: '/courses'
+      fullPath: '/courses'
+      preLoaderRoute: typeof CoursesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/certificates': {
+      id: '/certificates'
+      path: '/certificates'
+      fullPath: '/certificates'
+      preLoaderRoute: typeof CertificatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-video-ads': {
+      id: '/ai-video-ads'
+      path: '/ai-video-ads'
+      fullPath: '/ai-video-ads'
+      preLoaderRoute: typeof AiVideoAdsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-songs': {
+      id: '/ai-songs'
+      path: '/ai-songs'
+      fullPath: '/ai-songs'
+      preLoaderRoute: typeof AiSongsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +177,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiSongsRoute: AiSongsRoute,
+  AiVideoAdsRoute: AiVideoAdsRoute,
+  CertificatesRoute: CertificatesRoute,
+  CoursesRoute: CoursesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  VibeCodingRoute: VibeCodingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
