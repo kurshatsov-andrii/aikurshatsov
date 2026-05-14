@@ -14,7 +14,6 @@ import { ThemeProvider } from "@/lib/theme";
 import { I18nProvider } from "@/lib/i18n";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -63,12 +62,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Куршацов Андрій — AI Creator & Vibe Coding Developer" },
       { name: "description", content: "Premium portfolio: AI music, AI video ads, vibe-coded products and AI courses by Андрій Куршацов." },
       { name: "author", content: "Kurshatsov Andrii" },
-      { property: "og:title", content: "Куршацов Андрій — AI Creator" },
-      { property: "og:description", content: "AI music, AI video ads, vibe coding & courses." },
+      { property: "og:title", content: "Куршацов Андрій — AI Creator & Vibe Coding Developer" },
+      { property: "og:description", content: "Premium portfolio: AI music, AI video ads, vibe-coded products and AI courses by Андрій Куршацов." },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Kurshatsov.ai" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#0a0612" },
+      { name: "twitter:title", content: "Куршацов Андрій — AI Creator & Vibe Coding Developer" },
+      { name: "twitter:description", content: "Premium portfolio: AI music, AI video ads, vibe-coded products and AI courses by Андрій Куршацов." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a3809d12-96bf-4848-a804-98219c876daf/id-preview-8fbf2a25--0038991a-76b5-48b6-9040-2f3de2eed392.lovable.app-1778753658481.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a3809d12-96bf-4848-a804-98219c876daf/id-preview-8fbf2a25--0038991a-76b5-48b6-9040-2f3de2eed392.lovable.app-1778753658481.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -125,7 +128,6 @@ function RootComponent() {
             <Outlet />
           </main>
           <Footer />
-          <Toaster />
         </I18nProvider>
       </ThemeProvider>
     </QueryClientProvider>
