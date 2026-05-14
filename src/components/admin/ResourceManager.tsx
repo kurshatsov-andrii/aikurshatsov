@@ -35,10 +35,11 @@ export function ResourceManager({ table, title, fields, primaryColumn, storageFo
   const [editing, setEditing] = useState<Row | null>(null);
   const [open, setOpen] = useState(false);
 
+  const sb = supabase as any;
   const { data: rows = [], isLoading } = useQuery({
     queryKey: [table],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const { data, error } = await sb
         .from(table)
         .select("*")
         .order("sort_order", { ascending: true });
@@ -51,10 +52,10 @@ export function ResourceManager({ table, title, fields, primaryColumn, storageFo
     mutationFn: async (payload: Row) => {
       const { id, ...rest } = payload;
       if (id) {
-        const { error } = await supabase.from(table).update(rest).eq("id", id);
+        const { error } = await sb.from(table).update(rest).eq("id", id);
         if (error) throw error;
       } else {
-        const { error } = await supabase.from(table).insert(rest);
+        const { error } = await sb.from(table).insert(rest);
         if (error) throw error;
       }
     },
@@ -69,7 +70,7 @@ export function ResourceManager({ table, title, fields, primaryColumn, storageFo
 
   const remove = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase.from(table).delete().eq("id", id);
+      const { error } = await sb.from(table).delete().eq("id", id);
       if (error) throw error;
     },
     onSuccess: () => {

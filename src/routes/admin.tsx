@@ -11,7 +11,7 @@ export const Route = createFileRoute("/admin")({
   component: AdminLayout,
 });
 
-const items = [
+const items: { to: string; icon: typeof Music; label: string; exact?: boolean }[] = [
   { to: "/admin", icon: LayoutDashboard, label: "Дашборд", exact: true },
   { to: "/admin/songs", icon: Music, label: "Пісні" },
   { to: "/admin/videos", icon: Film, label: "Відеореклама" },
@@ -19,7 +19,7 @@ const items = [
   { to: "/admin/courses", icon: GraduationCap, label: "Курси" },
   { to: "/admin/certificates", icon: Award, label: "Сертифікати" },
   { to: "/admin/testimonials", icon: MessageSquare, label: "Відгуки" },
-] as const;
+];
 
 function AdminLayout() {
   const { user, isAdmin, loading, signOut } = useAuth();

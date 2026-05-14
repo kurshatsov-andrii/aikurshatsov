@@ -74,7 +74,7 @@ export type DBTestimonial = {
 };
 
 const order = (table: string) =>
-  supabase.from(table).select("*").order("sort_order", { ascending: true });
+  (supabase as any).from(table).select("*").order("sort_order", { ascending: true });
 
 export const fetchSongs = async () => {
   const { data, error } = await order("songs");
