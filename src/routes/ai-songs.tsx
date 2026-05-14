@@ -27,7 +27,7 @@ function AiSongsPage() {
             {t("portfolio.tab.songs")}
           </div>
           <h1 className="font-display text-5xl sm:text-6xl font-semibold tracking-tight">
-            <span className="text-gradient">AI</span> музика
+            <span className="text-gradient">{t("page.songs.h1a")}</span> {t("page.songs.h1b")}
           </h1>
           <p className="mt-3 text-muted-foreground max-w-xl">{t("portfolio.subtitle")}</p>
         </header>
