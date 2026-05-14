@@ -34,6 +34,8 @@ const dict = {
 
     "portfolio.title": "Портфоліо",
     "portfolio.subtitle": "Вибрані роботи на перетині мистецтва, технологій і реклами.",
+    "portfolio.headline1": "Вибрані",
+    "portfolio.headline2": "роботи",
     "portfolio.tab.songs": "AI Songs",
     "portfolio.tab.video": "AI Video Ads",
     "portfolio.tab.code": "Vibe Coding",
@@ -43,6 +45,8 @@ const dict = {
 
     "courses.title": "Курси",
     "courses.subtitle": "Навчись створювати з ШІ — від ідеї до релізу.",
+    "courses.headline1": "Навчись створювати",
+    "courses.headline2": "з ШІ",
     "courses.cta": "Перейти до курсу",
     "course.song.title": "Створи пісню та кліп з ШІ",
     "course.song.desc": "Повний шлях: текст → музика → відеокліп. Працюємо з Suno, Udio, Runway та Kling.",
@@ -51,12 +55,19 @@ const dict = {
 
     "certs.title": "Сертифікати",
     "certs.subtitle": "Підтверджена експертиза.",
+    "certs.headline1": "Підтверджена",
+    "certs.headline2": "експертиза",
 
     "testimonials.title": "Відгуки",
     "testimonials.subtitle": "Про роботу зі мною — словами клієнтів і студентів.",
+    "testimonials.headline1": "Слова",
+    "testimonials.headline2": ", що мотивують",
 
     "contact.title": "Зв’язатися",
     "contact.subtitle": "Розкажи про проєкт — відповім протягом 24 годин.",
+    "contact.headline1": "Розкажи про",
+    "contact.headline2": "проєкт",
+    "contact.quick": "Швидкий зв’язок: Telegram або Instagram",
     "contact.name": "Ім’я",
     "contact.email": "Email",
     "contact.message": "Повідомлення",
@@ -92,11 +103,15 @@ const dict = {
     "stats.teach": "teaching AI",
 
     "about.title": "About me",
+    "about.headline1": "Code + creativity.",
+    "about.headline2": "From idea to launch.",
     "about.body":
       "Andrii Kurshatsov is an AI Creator and digital specialist with deep experience in advertising, web, AI content, music & video generation, and vibe coding. I help brands and creators speak the language of the future.",
 
     "portfolio.title": "Portfolio",
     "portfolio.subtitle": "Selected work at the intersection of art, technology, and advertising.",
+    "portfolio.headline1": "Selected",
+    "portfolio.headline2": "work",
     "portfolio.tab.songs": "AI Songs",
     "portfolio.tab.video": "AI Video Ads",
     "portfolio.tab.code": "Vibe Coding",
@@ -106,6 +121,8 @@ const dict = {
 
     "courses.title": "Courses",
     "courses.subtitle": "Learn to create with AI — from idea to release.",
+    "courses.headline1": "Learn to create",
+    "courses.headline2": "with AI",
     "courses.cta": "Open course",
     "course.song.title": "Make a song & music video with AI",
     "course.song.desc": "End-to-end: lyrics → music → video. We use Suno, Udio, Runway, and Kling.",
@@ -114,12 +131,19 @@ const dict = {
 
     "certs.title": "Certificates",
     "certs.subtitle": "Verified expertise.",
+    "certs.headline1": "Verified",
+    "certs.headline2": "expertise",
 
     "testimonials.title": "Testimonials",
     "testimonials.subtitle": "What clients and students say about working with me.",
+    "testimonials.headline1": "Words",
+    "testimonials.headline2": " that inspire",
 
     "contact.title": "Get in touch",
     "contact.subtitle": "Tell me about your project — I’ll reply within 24 hours.",
+    "contact.headline1": "Tell me about",
+    "contact.headline2": "your project",
+    "contact.quick": "Quick contact: Telegram or Instagram",
     "contact.name": "Name",
     "contact.email": "Email",
     "contact.message": "Message",
