@@ -11,13 +11,24 @@ import { fetchSeo, seoMeta } from "@/lib/site-content";
 
 export const Route = createFileRoute("/")({
   loader: async () => ({ seo: await fetchSeo("/") }),
-  head: ({ loaderData }) =>
-    seoMeta(
+  head: ({ loaderData }) => ({
+    ...seoMeta(
       loaderData?.seo ?? null,
       "Куршацов Андрій — AI Creator & Vibe Coding Developer",
       "Преміум-портфоліо: AI-музика, AI-відеореклама, vibe-coded продукти та AI-курси.",
       "/"
     ),
+    scripts: [{
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "Куршацов Андрій — AI Creator & Vibe Coding Developer",
+        url: "https://kurshatsov-andrii.lovable.app/",
+        inLanguage: "uk",
+      }),
+    }],
+  }),
   component: Index,
 });
 
