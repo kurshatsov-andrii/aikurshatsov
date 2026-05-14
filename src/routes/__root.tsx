@@ -67,6 +67,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Kurshatsov.ai" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "google-site-verification", content: "nmvx4wn1_8D9Qci1LZyDE-woV5YYYj9N57iDayZJ0nQ" },
       { name: "theme-color", content: "#0a0612" },
       { name: "twitter:title", content: "Куршацов Андрій — AI Creator & Vibe Coding Developer" },
       { name: "twitter:description", content: "Premium portfolio: AI music, AI video ads, vibe-coded products and AI courses by Андрій Куршацов." },
