@@ -42,6 +42,7 @@ export function Header() {
               { to: "/vibe-coding", k: "portfolio.tab.code" as const },
               { to: "/courses", k: "nav.courses" as const },
               { to: "/certificates", k: "nav.certificates" as const },
+              { to: "/contact", k: "nav.contact" as const },
             ].map((item) => (
               <Link
                 key={item.to}
