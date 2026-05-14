@@ -39,6 +39,7 @@ export function Header() {
               { to: "/services", k: "nav.services" as const },
               { to: "/ai-songs", k: "portfolio.tab.songs" as const },
               { to: "/ai-video-ads", k: "portfolio.tab.video" as const },
+              { to: "/ai-clips", k: "portfolio.tab.clips" as const },
               { to: "/vibe-coding", k: "portfolio.tab.code" as const },
               { to: "/courses", k: "nav.courses" as const },
               { to: "/certificates", k: "nav.certificates" as const },

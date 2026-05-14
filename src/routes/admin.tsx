@@ -17,6 +17,7 @@ const items: { to: string; icon: typeof Music; label: string; exact?: boolean }[
   { to: "/admin/seo", icon: Search, label: "SEO сторінок" },
   { to: "/admin/songs", icon: Music, label: "Пісні" },
   { to: "/admin/videos", icon: Film, label: "Відеореклама" },
+  { to: "/admin/clips", icon: Film, label: "ШІ-кліпи" },
   { to: "/admin/projects", icon: Code2, label: "Vibe-проєкти" },
   { to: "/admin/courses", icon: GraduationCap, label: "Курси" },
   { to: "/admin/certificates", icon: Award, label: "Сертифікати" },
