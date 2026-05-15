@@ -65,14 +65,7 @@ export function Header() {
               className="h-9 px-2.5 rounded-lg text-xs font-medium flex items-center hover:bg-secondary/60 transition-colors"
               aria-label="Switch language"
             >
-              <span className="uppercase">{lang}</span>
-            </button>
-            <button
-              onClick={toggle}
-              className="h-9 w-9 grid place-items-center rounded-lg hover:bg-secondary/60 transition-colors"
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+<span className="uppercase">{lang}</span>
             </button>
 
             <Sheet open={open} onOpenChange={setOpen}>
