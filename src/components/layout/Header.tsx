@@ -17,7 +17,6 @@ const NAV_ITEMS = [
 ];
 
 export function Header() {
-  const { theme, toggle } = useTheme();
   const { lang, setLang, t } = useI18n();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
