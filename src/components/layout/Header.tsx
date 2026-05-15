@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Moon, Sun, Menu } from "lucide-react";
-import { useTheme } from "@/lib/theme";
+import { Menu } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
