@@ -72,8 +72,8 @@ const dict = {
 
     "contact.title": "Зв’язатися",
     "contact.subtitle": "Відповім на всі ваші питання.",
-    "contact.headline1": "Напишіть мені,",
-    "contact.headline2": "зворотній зв’язок",
+    "contact.headline1": "Напишіть мені",
+    "contact.headline2": "",
     "contact.quick": "Швидкий зв’язок: Telegram або Instagram",
     "contact.name": "Ім’я",
     "contact.email": "Email",
