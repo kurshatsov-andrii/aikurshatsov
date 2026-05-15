@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Moon, Sun, Menu } from "lucide-react";
-import { useTheme } from "@/lib/theme";
+import { Menu } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
@@ -18,7 +17,6 @@ const NAV_ITEMS = [
 ];
 
 export function Header() {
-  const { theme, toggle } = useTheme();
   const { lang, setLang, t } = useI18n();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -67,14 +65,7 @@ export function Header() {
               className="h-9 px-2.5 rounded-lg text-xs font-medium flex items-center hover:bg-secondary/60 transition-colors"
               aria-label="Switch language"
             >
-              <span className="uppercase">{lang}</span>
-            </button>
-            <button
-              onClick={toggle}
-              className="h-9 w-9 grid place-items-center rounded-lg hover:bg-secondary/60 transition-colors"
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+<span className="uppercase">{lang}</span>
             </button>
 
             <Sheet open={open} onOpenChange={setOpen}>
