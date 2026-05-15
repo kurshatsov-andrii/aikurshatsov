@@ -31,9 +31,23 @@ export function Testimonials() {
             >
               <Quote className="size-6 text-violet" />
               <blockquote className="text-base leading-relaxed">{pick(lang, tt.text_uk, tt.text_en)}</blockquote>
-              <figcaption className="mt-auto pt-4 border-t border-border">
-                <div className="font-medium">{tt.name}</div>
-                <div className="text-xs text-muted-foreground">{pick(lang, tt.role_uk, tt.role_en)}</div>
+              <figcaption className="mt-auto pt-4 border-t border-border flex items-center gap-3">
+                {tt.avatar_url ? (
+                  <img
+                    src={tt.avatar_url}
+                    alt={tt.name}
+                    loading="lazy"
+                    className="size-10 rounded-full object-cover bg-secondary shrink-0"
+                  />
+                ) : (
+                  <div className="size-10 rounded-full bg-secondary grid place-items-center text-sm font-medium shrink-0">
+                    {tt.name.charAt(0)}
+                  </div>
+                )}
+                <div className="min-w-0">
+                  <div className="font-medium truncate">{tt.name}</div>
+                  <div className="text-xs text-muted-foreground truncate">{pick(lang, tt.role_uk, tt.role_en)}</div>
+                </div>
               </figcaption>
             </motion.figure>
           ))}
