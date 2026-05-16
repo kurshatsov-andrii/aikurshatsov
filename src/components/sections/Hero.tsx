@@ -75,6 +75,7 @@ export function Hero() {
         >
           <a
             href="#portfolio"
+            onClick={(e) => { e.preventDefault(); document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth", block: "start" }); }}
             className="group inline-flex items-center gap-2 rounded-full bg-foreground text-background px-5 sm:px-6 h-12 text-sm font-medium hover:opacity-90 transition-all hover:scale-[1.02]"
           >
             {t("hero.cta.portfolio")}
@@ -82,6 +83,7 @@ export function Hero() {
           </a>
           <a
             href="#courses"
+            onClick={(e) => { e.preventDefault(); document.getElementById("courses")?.scrollIntoView({ behavior: "smooth", block: "start" }); }}
             className="inline-flex items-center gap-2 glass rounded-full px-5 sm:px-6 h-12 text-sm font-medium hover:bg-secondary/60 transition-all hover:scale-[1.02]"
           >
             <GraduationCap className="size-4" />
@@ -89,6 +91,7 @@ export function Hero() {
           </a>
           <a
             href="#contact"
+            onClick={(e) => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" }); }}
             className="inline-flex items-center gap-2 rounded-full px-5 sm:px-6 h-12 text-sm font-medium hover:bg-secondary/60 transition-all hover:scale-[1.02]"
           >
             <Mail className="size-4" />
