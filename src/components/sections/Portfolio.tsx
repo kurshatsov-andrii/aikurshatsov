@@ -5,12 +5,15 @@ import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useI18n } from "@/lib/i18n";
 import { fetchSongs, fetchVideos, fetchVibeProjects, fetchClips, pick } from "@/lib/data";
+import { MediaPlayerModal } from "@/components/MediaPlayerModal";
 
 type Tab = "songs" | "video" | "clips" | "code";
+type PlayerState = { open: boolean; kind: "audio" | "video"; url: string; title?: string; cover?: string };
 
 export function Portfolio() {
   const { t, lang } = useI18n();
   const [tab, setTab] = useState<Tab>("songs");
+  const [player, setPlayer] = useState<PlayerState>({ open: false, kind: "audio", url: "" });
 
   const { data: songs = [] } = useQuery({ queryKey: ["songs"], queryFn: fetchSongs });
   const { data: videos = [] } = useQuery({ queryKey: ["videos"], queryFn: fetchVideos });
