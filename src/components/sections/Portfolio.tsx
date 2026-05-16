@@ -75,7 +75,12 @@ export function Portfolio() {
               <div className="relative aspect-square overflow-hidden">
                 <img src={s.cover_url} alt={pick(lang, s.title_uk, s.title_en)} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                <button aria-label="Play" className="absolute bottom-4 left-4 size-12 rounded-full bg-foreground text-background grid place-items-center hover:scale-110 transition-transform">
+                <button
+                  aria-label="Play"
+                  onClick={() => s.audio_url && setPlayer({ open: true, kind: "audio", url: s.audio_url, title: pick(lang, s.title_uk, s.title_en), cover: s.cover_url })}
+                  disabled={!s.audio_url}
+                  className="absolute bottom-4 left-4 size-12 rounded-full bg-foreground text-background grid place-items-center hover:scale-110 transition-transform disabled:opacity-40 disabled:cursor-not-allowed"
+                >
                   <Play className="size-5 ml-0.5" />
                 </button>
                 {s.genre && (
