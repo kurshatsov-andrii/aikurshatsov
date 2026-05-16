@@ -181,6 +181,15 @@ export function Portfolio() {
           </Link>
         </div>
       </div>
+
+      <MediaPlayerModal
+        open={player.open}
+        onClose={() => setPlayer((p) => ({ ...p, open: false }))}
+        url={player.url}
+        kind={player.kind}
+        title={player.title}
+        cover={player.cover}
+      />
     </section>
   );
 }
