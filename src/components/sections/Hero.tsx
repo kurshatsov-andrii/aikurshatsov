@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, GraduationCap, Mail } from "lucide-react";
+import { ArrowRight, GraduationCap, Mail, Sparkles } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useI18n } from "@/lib/i18n";
 
@@ -73,6 +73,15 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.25 }}
           className="mt-10 flex flex-wrap items-center justify-center gap-3"
         >
+          <a
+            href="#services"
+            onClick={(e) => { e.preventDefault(); document.getElementById("services")?.scrollIntoView({ behavior: "smooth", block: "start" }); }}
+            className="group relative inline-flex items-center gap-2 rounded-full px-5 sm:px-6 h-12 text-sm font-medium text-white bg-gradient-to-r from-violet via-fuchsia-500 to-cyan shadow-elegant hover:scale-[1.03] transition-all"
+          >
+            <Sparkles className="size-4" />
+            {t("hero.cta.services")}
+            <ArrowRight className="size-4 group-hover:translate-x-0.5 transition-transform" />
+          </a>
           <a
             href="#portfolio"
             onClick={(e) => { e.preventDefault(); document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth", block: "start" }); }}
