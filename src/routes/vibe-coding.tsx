@@ -81,7 +81,7 @@ function VibePage() {
                   <div className="mt-4 flex items-center gap-3 text-sm">
                     {p.live_url && (
                       <a href={p.live_url} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-1.5 hover:text-violet transition-colors">
-                        <ExternalLink className="size-4" /> Live
+                        <ExternalLink className="size-4" /> Web
                       </a>
                     )}
                     {p.github_url && (
