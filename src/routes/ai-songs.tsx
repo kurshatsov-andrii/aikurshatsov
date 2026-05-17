@@ -98,5 +98,14 @@ function AiSongsPage() {
         )}
       </div>
     </section>
+    <MediaPlayerModal
+      open={!!player}
+      onClose={() => setPlayer(null)}
+      kind="audio"
+      url={player?.url ?? ""}
+      title={player?.title}
+      cover={player?.cover}
+    />
+    </>
   );
 }
