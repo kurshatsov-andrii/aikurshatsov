@@ -88,5 +88,13 @@ function VideoPage() {
         )}
       </div>
     </section>
+    <MediaPlayerModal
+      open={!!player}
+      onClose={() => setPlayer(null)}
+      kind="video"
+      url={player?.url ?? ""}
+      title={player?.title}
+    />
+    </>
   );
 }
