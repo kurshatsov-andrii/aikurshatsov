@@ -167,7 +167,7 @@ export function Portfolio() {
                   </div>
                 )}
                 <div className="mt-4 flex items-center gap-3 text-sm">
-                  {p.live_url && <a href={p.live_url} className="inline-flex items-center gap-1.5 hover:text-violet transition-colors"><ExternalLink className="size-4" /> Live</a>}
+                  {p.live_url && <a href={p.live_url} className="inline-flex items-center gap-1.5 hover:text-violet transition-colors"><ExternalLink className="size-4" /> Web</a>}
                   {p.github_url && <a href={p.github_url} className="inline-flex items-center gap-1.5 hover:text-violet transition-colors"><Github className="size-4" /> GitHub</a>}
                 </div>
               </div>
