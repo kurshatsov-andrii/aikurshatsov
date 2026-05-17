@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Music, Play } from "lucide-react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useI18n } from "@/lib/i18n";
 import { fetchSongs, pick } from "@/lib/data";
 import { fetchSeo, seoMeta } from "@/lib/site-content";
+import { MediaPlayerModal } from "@/components/MediaPlayerModal";
 
 export const Route = createFileRoute("/ai-songs")({
   loader: async () => ({ seo: await fetchSeo("/ai-songs") }),
@@ -31,8 +33,10 @@ export const Route = createFileRoute("/ai-songs")({
 function AiSongsPage() {
   const { t, lang } = useI18n();
   const { data: songs = [] } = useQuery({ queryKey: ["songs"], queryFn: fetchSongs });
+  const [player, setPlayer] = useState<{ url: string; title: string; cover?: string } | null>(null);
 
   return (
+    <>
     <section className="py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4">
         <header className="mb-12">
@@ -63,7 +67,12 @@ function AiSongsPage() {
                 <div className="relative aspect-square overflow-hidden">
                   <img src={s.cover_url} alt={pick(lang, s.title_uk, s.title_en)} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <button aria-label="Play" className="absolute bottom-4 left-4 size-12 rounded-full bg-foreground text-background grid place-items-center hover:scale-110 transition-transform">
+                  <button
+                    aria-label="Play"
+                    onClick={() => s.audio_url && setPlayer({ url: s.audio_url, title: pick(lang, s.title_uk, s.title_en), cover: s.cover_url })}
+                    disabled={!s.audio_url}
+                    className="absolute bottom-4 left-4 size-12 rounded-full bg-foreground text-background grid place-items-center hover:scale-110 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
                     <Play className="size-5 ml-0.5" />
                   </button>
                   {s.genre && (
@@ -89,5 +98,14 @@ function AiSongsPage() {
         )}
       </div>
     </section>
+    <MediaPlayerModal
+      open={!!player}
+      onClose={() => setPlayer(null)}
+      kind="audio"
+      url={player?.url ?? ""}
+      title={player?.title}
+      cover={player?.cover}
+    />
+    </>
   );
 }
