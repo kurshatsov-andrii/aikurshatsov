@@ -33,8 +33,10 @@ export const Route = createFileRoute("/ai-video-ads")({
 function VideoPage() {
   const { t, lang } = useI18n();
   const { data: videos = [] } = useQuery({ queryKey: ["videos"], queryFn: fetchVideos });
+  const [player, setPlayer] = useState<{ url: string; title: string } | null>(null);
 
   return (
+    <>
     <section className="py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4">
         <header className="mb-12">
