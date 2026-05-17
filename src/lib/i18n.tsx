@@ -139,6 +139,7 @@ const dict = {
     "hero.cta.portfolio": "View portfolio",
     "hero.cta.courses": "My courses",
     "hero.cta.contact": "Get in touch",
+    "hero.cta.services": "Services",
 
     "stats.ai": "in AI",
     "stats.ads": "in advertising",
