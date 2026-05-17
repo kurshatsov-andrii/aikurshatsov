@@ -96,7 +96,7 @@ const dict = {
     "svc.clips.price": "від $500",
     "svc.clips.desc": "Музичні кліпи з ШІ — для артистів і брендів.",
     "svc.ads.title": "Відеореклама",
-    "svc.ads.price": "від $300 / 1 хв",
+    "svc.ads.price": "від $300",
     "svc.ads.desc": "Кінематографічна відеореклама для бізнесу.",
     "svc.websites.title": "Сайти для бізнесу",
     "svc.websites.price": "від $500",
