@@ -33,8 +33,10 @@ export const Route = createFileRoute("/ai-songs")({
 function AiSongsPage() {
   const { t, lang } = useI18n();
   const { data: songs = [] } = useQuery({ queryKey: ["songs"], queryFn: fetchSongs });
+  const [player, setPlayer] = useState<{ url: string; title: string; cover?: string } | null>(null);
 
   return (
+    <>
     <section className="py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4">
         <header className="mb-12">
