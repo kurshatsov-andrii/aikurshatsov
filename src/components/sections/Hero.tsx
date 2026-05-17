@@ -74,6 +74,15 @@ export function Hero() {
           className="mt-10 flex flex-wrap items-center justify-center gap-3"
         >
           <a
+            href="#services"
+            onClick={(e) => { e.preventDefault(); document.getElementById("services")?.scrollIntoView({ behavior: "smooth", block: "start" }); }}
+            className="group relative inline-flex items-center gap-2 rounded-full px-5 sm:px-6 h-12 text-sm font-medium text-white bg-gradient-to-r from-violet via-fuchsia-500 to-cyan shadow-elegant hover:scale-[1.03] transition-all"
+          >
+            <Sparkles className="size-4" />
+            {t("hero.cta.services")}
+            <ArrowRight className="size-4 group-hover:translate-x-0.5 transition-transform" />
+          </a>
+          <a
             href="#portfolio"
             onClick={(e) => { e.preventDefault(); document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth", block: "start" }); }}
             className="group inline-flex items-center gap-2 rounded-full bg-foreground text-background px-5 sm:px-6 h-12 text-sm font-medium hover:opacity-90 transition-all hover:scale-[1.02]"
