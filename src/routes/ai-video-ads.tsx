@@ -68,7 +68,12 @@ function VideoPage() {
                   <img src={v.thumbnail_url} alt={pick(lang, v.title_uk, v.title_en)} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                   <span className="absolute top-3 left-3 glass rounded-full px-2.5 py-1 text-[11px]">{v.platform}</span>
-                  <button aria-label="Play" className="absolute inset-0 m-auto size-14 rounded-full bg-foreground/90 text-background grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button
+                    aria-label="Play"
+                    onClick={() => v.video_url && setPlayer({ url: v.video_url, title: pick(lang, v.title_uk, v.title_en) })}
+                    disabled={!v.video_url}
+                    className="absolute inset-0 m-auto size-14 rounded-full bg-foreground/90 text-background grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity disabled:cursor-not-allowed"
+                  >
                     <Play className="size-6 ml-0.5" />
                   </button>
                 </div>
