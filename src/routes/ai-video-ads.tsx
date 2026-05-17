@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useI18n } from "@/lib/i18n";
 import { fetchVideos, pick } from "@/lib/data";
 import { fetchSeo, seoMeta } from "@/lib/site-content";
+import { MediaPlayerModal } from "@/components/MediaPlayerModal";
 
 export const Route = createFileRoute("/ai-video-ads")({
   loader: async () => ({ seo: await fetchSeo("/ai-video-ads") }),
