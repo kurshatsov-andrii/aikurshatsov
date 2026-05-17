@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, GraduationCap, Mail } from "lucide-react";
+import { ArrowRight, GraduationCap, Mail, Sparkles } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useI18n } from "@/lib/i18n";
 
