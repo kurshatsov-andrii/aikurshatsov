@@ -115,10 +115,11 @@ export function Contact() {
               </div>
               <button
                 type="submit"
-                className="group inline-flex items-center gap-2 rounded-full bg-foreground text-background px-6 h-12 text-sm font-medium hover:opacity-90 transition-all hover:scale-[1.02]"
+                disabled={sending}
+                className="group inline-flex items-center gap-2 rounded-full bg-foreground text-background px-6 h-12 text-sm font-medium hover:opacity-90 transition-all hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 <Sparkles className="size-4" />
-                {sent ? t("contact.sent") : t("contact.send")}
+                {sending ? "..." : sent ? t("contact.sent") : t("contact.send")}
               </button>
             </form>
           </div>
