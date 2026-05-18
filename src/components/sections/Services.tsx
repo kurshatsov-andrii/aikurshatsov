@@ -3,6 +3,7 @@ import { Music, Film, Video, Globe, Sparkles, Check } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { sendBriefToTelegram } from "@/lib/telegram.functions";
 
 type ServiceKey = "songs" | "clips" | "ads" | "websites";
 
@@ -35,18 +36,36 @@ export function Services() {
     }
     setLoading(true);
     const svc = services.find((s) => s.key === selected);
+    const serviceLabel = svc ? (t(svc.titleK) as string) : selected;
+    const trimmedDesc = description.trim().slice(0, 2000);
+    const trimmedName = name.trim().slice(0, 100);
+    const trimmedContact = contact.trim().slice(0, 200);
     const { error } = await (supabase as any).from("briefs").insert({
-      service: svc ? (t(svc.titleK) as string) : selected,
-      description: description.trim().slice(0, 2000),
-      name: name.trim().slice(0, 100) || null,
-      contact: contact.trim().slice(0, 200),
+      service: serviceLabel,
+      description: trimmedDesc,
+      name: trimmedName || null,
+      contact: trimmedContact,
       contact_type: contactType,
     });
-    setLoading(false);
     if (error) {
+      setLoading(false);
       toast.error(t("svc.err.send"));
       return;
     }
+    try {
+      await sendBriefToTelegram({
+        data: {
+          service: serviceLabel,
+          description: trimmedDesc,
+          name: trimmedName,
+          contact: trimmedContact,
+          contactType,
+        },
+      });
+    } catch (e) {
+      console.error("Telegram notify failed", e);
+    }
+    setLoading(false);
     setSent(true);
     setDescription("");
     setName("");

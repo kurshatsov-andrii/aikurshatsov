@@ -1,8 +1,10 @@
 import { Send, MessageCircle, Instagram, Linkedin, Github, Music2, Sparkles, Phone } from "lucide-react";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { toast } from "sonner";
 import { useI18n } from "@/lib/i18n";
 import { fetchSiteContent } from "@/lib/site-content";
+import { sendContactToTelegram } from "@/lib/telegram.functions";
 
 type SocialsValue = Partial<Record<"telegram" | "viber" | "instagram" | "linkedin" | "github" | "tiktok", string>>;
 
@@ -27,6 +29,7 @@ const socialMeta: { key: keyof SocialsValue; name: string; Icon: typeof Send; co
 export function Contact() {
   const { t } = useI18n();
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
   const { data: socialsData } = useQuery({
     queryKey: ["site_content", "socials"],
     queryFn: () => fetchSiteContent<SocialsValue>("socials"),
@@ -53,9 +56,28 @@ export function Contact() {
             <p className="mt-3 text-muted-foreground">{t("contact.subtitle")}</p>
 
             <form
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
-                setSent(true);
+                if (sending) return;
+                const form = e.currentTarget;
+                const fd = new FormData(form);
+                const payload = {
+                  name: String(fd.get("name") || "").trim().slice(0, 100),
+                  email: String(fd.get("email") || "").trim().slice(0, 255),
+                  message: String(fd.get("message") || "").trim().slice(0, 1000),
+                };
+                if (!payload.name || !payload.email || !payload.message) return;
+                setSending(true);
+                try {
+                  await sendContactToTelegram({ data: payload });
+                  setSent(true);
+                  form.reset();
+                } catch (err) {
+                  console.error(err);
+                  toast.error("Не вдалося надіслати. Спробуйте пізніше.");
+                } finally {
+                  setSending(false);
+                }
               }}
               className="mt-8 space-y-4"
             >
@@ -63,6 +85,7 @@ export function Contact() {
                 <label className="text-xs text-muted-foreground" htmlFor="name">{t("contact.name")}</label>
                 <input
                   id="name"
+                  name="name"
                   required
                   maxLength={100}
                   className="mt-1 w-full h-12 rounded-xl bg-secondary/50 border border-border px-4 outline-none focus:border-violet transition-colors"
@@ -72,6 +95,7 @@ export function Contact() {
                 <label className="text-xs text-muted-foreground" htmlFor="email">{t("contact.email")}</label>
                 <input
                   id="email"
+                  name="email"
                   type="email"
                   required
                   maxLength={255}
@@ -82,6 +106,7 @@ export function Contact() {
                 <label className="text-xs text-muted-foreground" htmlFor="message">{t("contact.message")}</label>
                 <textarea
                   id="message"
+                  name="message"
                   required
                   rows={5}
                   maxLength={1000}
@@ -90,10 +115,11 @@ export function Contact() {
               </div>
               <button
                 type="submit"
-                className="group inline-flex items-center gap-2 rounded-full bg-foreground text-background px-6 h-12 text-sm font-medium hover:opacity-90 transition-all hover:scale-[1.02]"
+                disabled={sending}
+                className="group inline-flex items-center gap-2 rounded-full bg-foreground text-background px-6 h-12 text-sm font-medium hover:opacity-90 transition-all hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 <Sparkles className="size-4" />
-                {sent ? t("contact.sent") : t("contact.send")}
+                {sending ? "..." : sent ? t("contact.sent") : t("contact.send")}
               </button>
             </form>
           </div>
