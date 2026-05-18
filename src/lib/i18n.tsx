@@ -46,7 +46,7 @@ const dict = {
     "page.video.h1b": "відеореклама",
     "page.clips.h1a": "ШІ",
     "page.clips.h1b": "кліпи",
-    "portfolio.tab.code": "Вайб кодінг",
+    "portfolio.tab.code": "Вайб кодинг",
     "portfolio.viewAll": "Переглянути всі",
     "portfolio.view": "Відкрити",
     "portfolio.empty": "Скоро тут з’являться роботи.",
