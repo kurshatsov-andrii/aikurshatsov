@@ -3,11 +3,14 @@ import { KeyValueEditor, type KVField } from "@/components/admin/KeyValueEditor"
 
 const PAGES: { path: string; label: string }[] = [
   { path: "/", label: "Головна" },
+  { path: "/services", label: "Послуги" },
   { path: "/ai-songs", label: "AI Songs" },
   { path: "/ai-video-ads", label: "AI Video Ads" },
+  { path: "/ai-clips", label: "ШІ кліпи" },
   { path: "/vibe-coding", label: "Vibe Coding" },
   { path: "/courses", label: "Курси" },
   { path: "/certificates", label: "Сертифікати" },
+  { path: "/contact", label: "Контакти" },
 ];
 
 const fields: KVField[] = [
