@@ -26,6 +26,8 @@ export function Courses() {
             <motion.a
               key={c.id}
               href={c.link_url ?? "#"}
+              target="_blank"
+              rel="noreferrer noopener"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
