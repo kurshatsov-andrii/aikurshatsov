@@ -85,6 +85,7 @@ export function Contact() {
                 <label className="text-xs text-muted-foreground" htmlFor="name">{t("contact.name")}</label>
                 <input
                   id="name"
+                  name="name"
                   required
                   maxLength={100}
                   className="mt-1 w-full h-12 rounded-xl bg-secondary/50 border border-border px-4 outline-none focus:border-violet transition-colors"
@@ -94,6 +95,7 @@ export function Contact() {
                 <label className="text-xs text-muted-foreground" htmlFor="email">{t("contact.email")}</label>
                 <input
                   id="email"
+                  name="email"
                   type="email"
                   required
                   maxLength={255}
@@ -104,6 +106,7 @@ export function Contact() {
                 <label className="text-xs text-muted-foreground" htmlFor="message">{t("contact.message")}</label>
                 <textarea
                   id="message"
+                  name="message"
                   required
                   rows={5}
                   maxLength={1000}
