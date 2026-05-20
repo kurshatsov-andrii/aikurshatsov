@@ -3,7 +3,7 @@ import { Music, Film, Video, Globe, Sparkles, Check } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { sendBriefToTelegram } from "@/lib/telegram.functions";
+
 
 type ServiceKey = "songs" | "clips" | "ads" | "websites";
 
@@ -53,14 +53,17 @@ export function Services() {
       return;
     }
     try {
-      await sendBriefToTelegram({
-        data: {
+      await fetch("/api/public/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "brief",
           service: serviceLabel,
           description: trimmedDesc,
           name: trimmedName,
           contact: trimmedContact,
           contactType,
-        },
+        }),
       });
     } catch (e) {
       console.error("Telegram notify failed", e);

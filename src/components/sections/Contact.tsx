@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useI18n } from "@/lib/i18n";
 import { fetchSiteContent } from "@/lib/site-content";
-import { sendContactToTelegram } from "@/lib/telegram.functions";
+
 
 type SocialsValue = Partial<Record<"telegram" | "viber" | "instagram" | "linkedin" | "github" | "tiktok", string>>;
 
@@ -69,7 +69,12 @@ export function Contact() {
                 if (!payload.name || !payload.email || !payload.message) return;
                 setSending(true);
                 try {
-                  await sendContactToTelegram({ data: payload });
+                  const res = await fetch("/api/public/notify", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ type: "contact", ...payload }),
+                  });
+                  if (!res.ok) throw new Error("send failed");
                   setSent(true);
                   form.reset();
                 } catch (err) {
