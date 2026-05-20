@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useI18n } from "@/lib/i18n";
 import { fetchSiteContent } from "@/lib/site-content";
-import { sendContactToTelegram } from "@/lib/telegram.functions";
+
 
 type SocialsValue = Partial<Record<"telegram" | "viber" | "instagram" | "linkedin" | "github" | "tiktok", string>>;
 
