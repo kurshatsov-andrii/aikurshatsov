@@ -56,6 +56,7 @@ export function Contact() {
             <p className="mt-3 text-muted-foreground">{t("contact.subtitle")}</p>
 
             <form
+              noValidate
               onSubmit={async (e) => {
                 e.preventDefault();
                 if (sending) return;
@@ -66,7 +67,14 @@ export function Contact() {
                   email: String(fd.get("email") || "").trim().slice(0, 255),
                   message: String(fd.get("message") || "").trim().slice(0, 1000),
                 };
-                if (!payload.name || !payload.email || !payload.message) return;
+                if (!payload.name || !payload.email || !payload.message) {
+                  toast.error("Заповніть ім’я, email і повідомлення.");
+                  return;
+                }
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
+                  toast.error("Вкажіть коректний email.");
+                  return;
+                }
                 setSending(true);
                 try {
                   const res = await fetch("/api/public/notify", {
@@ -74,9 +82,10 @@ export function Contact() {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ type: "contact", ...payload }),
                   });
-                  if (!res.ok) throw new Error("send failed");
+                  if (!res.ok) throw new Error(await res.text());
                   setSent(true);
                   form.reset();
+                  toast.success("Повідомлення надіслано в Telegram.");
                 } catch (err) {
                   console.error(err);
                   toast.error("Не вдалося надіслати. Спробуйте пізніше.");
