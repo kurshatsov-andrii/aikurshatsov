@@ -48,7 +48,11 @@ async function sendMessage(text: string) {
   const data: unknown = await res.json().catch(() => ({}));
   if (!res.ok) {
     console.error("Telegram sendMessage failed", res.status, data);
-    throw new Error(`Telegram error ${res.status}`);
+    const description =
+      typeof data === "object" && data && "description" in data
+        ? String((data as { description?: unknown }).description)
+        : `Telegram error ${res.status}`;
+    throw new Error(description);
   }
 }
 
@@ -90,7 +94,7 @@ export const Route = createFileRoute("/api/public/notify")({
         } catch (err) {
           console.error("notify route failed", err);
           return new Response(
-            JSON.stringify({ ok: false, error: "send failed" }),
+            JSON.stringify({ ok: false, error: err instanceof Error ? err.message : "send failed" }),
             { status: 500, headers: { "content-type": "application/json" } },
           );
         }
