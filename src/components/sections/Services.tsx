@@ -129,6 +129,7 @@ export function Services() {
 
         <form
           id="brief-form"
+          noValidate
           onSubmit={submit}
           className="glass rounded-3xl p-6 sm:p-10 max-w-3xl mx-auto"
         >
