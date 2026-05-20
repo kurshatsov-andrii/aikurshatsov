@@ -53,7 +53,7 @@ export function Services() {
       return;
     }
     try {
-      await fetch("/api/public/notify", {
+      const notifyRes = await fetch("/api/public/notify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -65,8 +65,10 @@ export function Services() {
           contactType,
         }),
       });
+      if (!notifyRes.ok) throw new Error(await notifyRes.text());
     } catch (e) {
       console.error("Telegram notify failed", e);
+      toast.error("Бриф збережено, але повідомлення в Telegram не надіслалось.");
     }
     setLoading(false);
     setSent(true);
@@ -127,6 +129,7 @@ export function Services() {
 
         <form
           id="brief-form"
+          noValidate
           onSubmit={submit}
           className="glass rounded-3xl p-6 sm:p-10 max-w-3xl mx-auto"
         >
