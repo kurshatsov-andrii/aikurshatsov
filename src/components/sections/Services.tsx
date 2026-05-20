@@ -53,14 +53,17 @@ export function Services() {
       return;
     }
     try {
-      await sendBriefToTelegram({
-        data: {
+      await fetch("/api/public/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "brief",
           service: serviceLabel,
           description: trimmedDesc,
           name: trimmedName,
           contact: trimmedContact,
           contactType,
-        },
+        }),
       });
     } catch (e) {
       console.error("Telegram notify failed", e);
