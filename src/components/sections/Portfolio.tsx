@@ -28,7 +28,7 @@ export function Portfolio() {
   ];
 
   return (
-    <section id="portfolio" className="relative py-24 sm:py-32">
+    <section id="portfolio" className="relative py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
           <div>

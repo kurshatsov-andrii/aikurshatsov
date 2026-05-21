@@ -42,7 +42,7 @@ export function Contact() {
   const igHref = socialsMap.instagram || "https://instagram.com/";
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32">
+    <section id="contact" className="relative py-14 sm:py-20">
       <div className="mx-auto max-w-6xl px-4">
         <div className="grid lg:grid-cols-2 gap-10">
           {/* Form */}

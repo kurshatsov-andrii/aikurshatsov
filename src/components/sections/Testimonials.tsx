@@ -9,7 +9,7 @@ export function Testimonials() {
   const { data: testimonials = [] } = useQuery({ queryKey: ["testimonials"], queryFn: fetchTestimonials });
 
   return (
-    <section className="relative py-24 sm:py-32">
+    <section className="relative py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-4">
         <div className="text-center mb-14">
           <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">{t("testimonials.title")}</div>

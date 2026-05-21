@@ -20,7 +20,7 @@ export function About() {
       : ["Suno", "Runway", "Kling", "Midjourney", "TanStack", "Supabase"];
 
   return (
-    <section id="about" className="relative py-24 sm:py-32">
+    <section id="about" className="relative py-14 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 grid lg:grid-cols-12 gap-10 items-center">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
