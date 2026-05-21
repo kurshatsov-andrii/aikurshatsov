@@ -94,7 +94,7 @@ function VideoPage() {
             className="inline-flex items-center gap-2 rounded-full border border-input bg-background px-6 py-3 text-sm font-medium shadow-sm hover:bg-accent hover:text-accent-foreground transition-colors"
           >
             <ExternalLink className="size-4" />
-            Быльше рекламних роликів у Instagram
+            Більше рекламних роликів у Instagram
           </a>
         </div>
       </div>
