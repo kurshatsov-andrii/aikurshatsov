@@ -95,6 +95,17 @@ function VibePage() {
             ))}
           </div>
         )}
+        <div className="mt-12 flex justify-center">
+          <a
+            href="https://github.com/kurshatsov-andrii"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center gap-2 rounded-full border border-input bg-background px-6 py-3 text-sm font-medium shadow-sm hover:bg-accent hover:text-accent-foreground transition-colors"
+          >
+            <ExternalLink className="size-4" />
+            Більше сайтів на GitHub
+          </a>
+        </div>
       </div>
     </section>
   );

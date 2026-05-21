@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Play } from "lucide-react";
+import { ExternalLink, Play } from "lucide-react";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useI18n } from "@/lib/i18n";
@@ -86,6 +86,17 @@ function VideoPage() {
             ))}
           </div>
         )}
+        <div className="mt-12 flex justify-center">
+          <a
+            href="https://www.instagram.com/ai.studio.fartlek/"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center gap-2 rounded-full border border-input bg-background px-6 py-3 text-sm font-medium shadow-sm hover:bg-accent hover:text-accent-foreground transition-colors"
+          >
+            <ExternalLink className="size-4" />
+            Быльше рекламних роликів у Instagram
+          </a>
+        </div>
       </div>
     </section>
     <MediaPlayerModal
