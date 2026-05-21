@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 
 const GATEWAY_URL = "https://connector-gateway.lovable.dev/telegram";
-const CHAT_ID = "8968369395";
+const CHAT_ID = "164025073";
 
 const escapeHtml = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
