@@ -7,7 +7,7 @@ export function Hero() {
   const { t } = useI18n();
 
   return (
-    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[60svh] flex items-center justify-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <img
@@ -37,12 +37,12 @@ export function Hero() {
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 py-32 text-center">
+      <div className="relative mx-auto max-w-6xl px-4 py-16 text-center">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-xs sm:text-sm hero-muted mb-8"
+          className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-xs sm:text-sm hero-muted mb-4"
         >
           <span className="size-1.5 rounded-full bg-cyan animate-pulse" />
           {t("hero.role")}
@@ -113,7 +113,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-20 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px rounded-2xl glass overflow-hidden"
+          className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px rounded-2xl glass overflow-hidden"
         >
           {[
             { n: "17+", k: "stats.web" as const },
