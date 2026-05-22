@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 
-const GATEWAY_URL = "https://connector-gateway.lovable.dev/telegram";
-const CHAT_ID = "164025073";
+const DEFAULT_CHAT_ID = "164025073";
 
 const escapeHtml = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -26,27 +25,23 @@ const contactSchema = z.object({
 const payloadSchema = z.discriminatedUnion("type", [briefSchema, contactSchema]);
 
 async function sendMessage(text: string) {
-  const LOVABLE_API_KEY = process.env.LOVABLE_API_KEY;
-  const TELEGRAM_API_KEY = process.env.TELEGRAM_API_KEY;
-  if (!LOVABLE_API_KEY || !TELEGRAM_API_KEY) {
-    throw new Error("Telegram secrets are not configured");
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID || DEFAULT_CHAT_ID;
+  if (!botToken) {
+    throw new Error("TELEGRAM_BOT_TOKEN is not configured");
   }
-  const res = await fetch(`${GATEWAY_URL}/sendMessage`, {
+  const res = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${LOVABLE_API_KEY}`,
-      "X-Connection-Api-Key": TELEGRAM_API_KEY,
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      chat_id: CHAT_ID,
+      chat_id: chatId,
       text,
       parse_mode: "HTML",
       disable_web_page_preview: true,
     }),
   });
   const data: unknown = await res.json().catch(() => ({}));
-  if (!res.ok) {
+  if (!res.ok || (typeof data === "object" && data && "ok" in data && !(data as { ok: boolean }).ok)) {
     console.error("Telegram sendMessage failed", res.status, data);
     const description =
       typeof data === "object" && data && "description" in data
